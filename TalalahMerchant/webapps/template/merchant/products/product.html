@@ -1,0 +1,796 @@
+<div>
+	<script type="text/template" id="product-main-page">
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li><a href="#Home/Customer/{{id}}">Home</a></li>
+				<li class="active">Products</li>
+			</ol>
+		</div>
+		<div class="row space">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<div class="col-xs-3 col-sm-3 col-lg-3" style="text-align:right;">
+					<p id="loading" style="display:none;">
+						<img src="/TalalahMerchant/content/util/img/loader.gif">
+					</p>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-lg-6">
+					 <div class="input-group">
+				      <input type="text" class="form-control" placeholder="Search for...">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button" id="search">Go!</button>
+				      </span>
+				    </div><!-- /input-group -->
+				</div>
+				<div class="col-xs-3 col-sm-3 col-lg-3">
+					<div style="text-align:right;">
+						<button type="button" class="btn btn-default" id="add">
+							<span class="glyphicon glyphicon-plus-sign"></span> Add
+						</button>
+					</div>
+					<a href="#Products/Customer/{{id}}/Add" style="display:none;"><span id="addPage"></span></a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row space">
+			<div class="col-xs-12 col-sm-12 col-lg-12">	
+				<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+				<div class="col-xs-4 col-sm-4 col-lg-4">
+					<div class="alert alert-success" style="text-align:center;display:none;" id="delete-success">
+							SUCCESS !
+					</div>
+					<div class="alert alert-danger" style="text-align:center;display:none;" id="delete-error">
+							ERROR !
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+			</div>
+		</div>
+
+		<div class="row space">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<div id="products"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<div style="text-align:center;">
+					<div style="display:none;" id="loader">
+						<img src="/TalalahMerchant/content/util/img/loader.gif">
+						Loading ...
+					</div>
+					<button type="button" class="btn btn-default" id="loadmore">
+						Load More
+					</button>
+				</div>
+			</div>
+		</div>
+	</script>
+		
+	<script type="text/template" id="productTemp">
+		<div class="thumbnail" title="{{id}}">
+			<a href="#Products/Customer/{{merchant.mcId}}/{{id}}">
+				<img width="400" height="450" alt="{{name}}" id="product-img">
+			</a>
+			<div class="caption">
+				<h4 class="title-limiter">
+					<a href="#Products/Customer/{{merchant.mcId}}/{{id}}">{{name}}</a>
+				</h4>
+				<h4> $ {{price}} USD </h4>
+				<p class="text-limiter">
+					{{shDes}}
+				</p>
+				<p style="text-align:right">
+					<a href="#" data-toggle="modal" data-target="#deletePanel">
+						<span class="glyphicon glyphicon-trash" id="delete"></span>
+					</a>
+				</p>
+				<div class="modal" id="deletePanel" tabindex="-1" role="dialog">
+  					<div class="modal-dialog modal-sm">
+    					<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">Delete Confirm</h4>
+							</div>
+							<div class="modal-body" style="text-align:center;">
+     							<div class="alert alert-info">
+									Are you sure to delete
+								</div>
+							</div>
+							<div class="modal-footer">
+       							<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        						<button type="button" class="btn btn-primary" id="confirm">OK</button>
+      						</div>
+    					</div>
+ 				 	</div>
+				</div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="product-breadcrumb">
+		<ol class="breadcrumb">
+			<li><a href="#Home/Customer/{{merchant.mcId}}">Home</a></li>
+			<li><a href="#Products/Customer/{{merchant.mcId}}">Products</a></li>
+			<li class="active">{{id}}</li>
+		</ol>
+	</script>
+	
+	<script type="text/template" id="product-add-breadcrumb">
+		<ol class="breadcrumb">
+			<li><a href="#Home/Customer/{{merchant.mcId}}">Home</a></li>
+			<li><a href="#Products/Customer/{{merchant.mcId}}">Products</a></li>
+			<li class="active">Add</li>
+		</ol>
+	</script>
+	
+	<script type="text/template" id="productPage">
+		<div class="col-xs-12 col-sm-12 col-lg-12">
+			<div class="row">
+				<div id="location"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<!-- product main image -->	
+					<div id="product-img"></div>
+				</div>
+				<div class="col-sm-3">
+					<!-- product info -->
+					<div id="product-info"></div>
+				</div>
+				<div class="col-sm-6">
+					<div id="short-detail"></div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<!-- item / travel -->
+				<div id="product-detail"></div>
+			</div>
+		
+			<div class="row">
+				<div id="related-imgs"></div>
+			</div>
+			
+			<div class="row">
+				<div id="full-detail"></div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="product-main-img">
+		<div style="text-align: center;">
+			<img id="productImg" width="200" height="250">
+			<div class="row space">
+				<input type="file" name="lefile" id="lefile" style="display: none;">
+				<img id="imgloader" src="/TalalahMerchant/content/util/img/loader.gif" style="display: none;">
+				<button class="btn btn-default" id="upload" style="display:none;">
+					<span class="glyphicon glyphicon-plus-sign"></span> upload
+				</button>
+				<p class="alert alert-success space" style="display:none;">
+					<span class="glyphicon glyphicon-ok"></span> SUCCESS !
+				</p>
+				<p class="alert alert-danger space" style="display:none;">
+					<span class="glyphicon glyphicon-remove"></span>ERROR !
+				</p>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="product-info">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-tag"></span> Information
+			</div>
+			<div class="panel-body">
+				<div class="row space">
+					<div class="col-xs-12 col-sm-12 col-lg-12">
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon" title="product'code">
+								<span class="glyphicon glyphicon-barcode"></span>
+							</span>
+							<input type="text" class="form-control" placeholder="Product's code"  name="id" value="{{id}}" disabled>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row space">
+					<div class="col-xs-12 col-sm-12 col-lg-12">
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon" title="Product's name">
+								<span class="glyphicon glyphicon-credit-card"></span>
+							</span>
+							<input type="text" class="form-control" placeholder="Product's name" value="{{name}}"  name="name" disabled>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row space">
+					<div class="col-xs-12 col-sm-12 col-lg-12">
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon" title="Product's price">
+								<span class="glyphicon glyphicon-usd"></span>
+							</span>
+							<input type="text" class="form-control" placeholder="Product's price" value="{{price}}" name="price"  disabled>
+							<span class="input-group-addon" title="Product's price">
+								USD
+							</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row space">
+					<div class="col-xs-12 col-sm-12 col-lg-12">
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon" title="product's url" >
+								<span class="glyphicon glyphicon-link"></span>
+							</span>
+							<input type="text" class="form-control" placeholder="Product's URL" value="{{url}}" name="url" disabled>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row space">
+					<div class="col-xs-12 col-sm-12 col-lg-12">
+						<a href="#"><span id="edit">Edit</span></a>
+						<a href="#" style="display:none;" id="next"><span id="next-page"></span></a>
+						<button type="button" class="btn btn-default" style="display: none;" id="save">save</button>
+						<button type="button" class="btn btn-default" style="display: none;" id="ok">OK</button>
+						<p class="alert alert-success space" style="display:none;">
+							<span class="glyphicon glyphicon-ok"></span> SUCCESS !
+						</p>
+						<p class="alert alert-danger space" style="display:none;">
+							<span class="glyphicon glyphicon-remove"></span>ERROR !
+						</p>
+						<img id="infoloader" src="/TalalahMerchant/content/util/img/loader.gif" style="display: none;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="product-item">
+		<div class="col-xs-6 col-sm-6 col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-tag"></span> Detail
+				</div>
+				<div class="panel-body">
+					<div class="row space">
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon" title="size">
+									SIZE
+								</span>
+	  							<input type="text" class="form-control" placeholder="Product's size" name="size" value="{{size}}" disabled>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon" title="color">
+									COLOR
+								</span>
+	  							<input type="text" class="form-control" placeholder="Product's color" name="color" value="{{color}}" disabled>
+							</div>
+						</div>
+					</div>
+					<div class="row space">
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon" title="width">
+									WIDTH
+								</span>
+	  							<input type="text" class="form-control" placeholder="Product's width" name="width" value="{{width}}" disabled>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon" title="size">
+									LENGTH
+								</span>
+	  							<input type="text" class="form-control" placeholder="Product's length" name="length" value="{{lenght}}" disabled>
+							</div>
+						</div>
+					</div>
+					<div class="row space">
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon" title="size">
+									HIEGHT
+								</span>
+	  							<input type="text" class="form-control" placeholder="Product's heigth" name="height" value="{{height}}" disabled>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon" title="weight">
+									WEIGHT
+								</span>
+	  							<input type="text" class="form-control" placeholder="Product's weight" name="weight" value="{{weight}}" disabled>
+							</div>
+						</div>
+					</div>
+					<div class="row space">
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon" title="stock">
+									STOCK
+								</span>
+	  							<input type="text" class="form-control" placeholder="Product's stock" name="stock" value="{{stock}}" disabled>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon" title="modelId">
+									MODELID
+								</span>
+	  							<input type="text" class="form-control" placeholder="Product's Model ID" name="modelId" value="{{modelId}}" disabled>
+							</div>
+						</div>
+					</div>
+					<div class="row space" style="text-align:right;">
+						<div class="col-sm-12 col-xs-12 col-lg-12">
+							<a href="#"><span id="edit1">Edit</span></a>
+							<p class="alert alert-success space success1" style="display:none;">
+								<span class="glyphicon glyphicon-ok"></span> SUCCESS !
+							</p>
+							<p class="alert alert-danger space error1" style="display:none;">
+								<span class="glyphicon glyphicon-remove"></span>ERROR !
+							</p>			
+							<img src="/TalalahMerchant/content/util/img/loader.gif" id="loader1" style="display:none;">
+							<button type="button" class="btn btn-default btn-sm" style="display:none;" id="ok1">OK</button> 	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-6 col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-menu-hamburger"></span>Shipping Providers
+				</div>
+				<div class="panel-body">
+					<div id="shippingProviders"></div>
+				</div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="shippingProviderList">
+		<div class="col-xs-12 col-sm-12 col-lg-12 space" style="font-weight:bold;border-bottom:1px solid #CCC;">
+			<div class="col-xs-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-sm-2 col-lg-2">Name</div>
+			<div class="col-sm-3 col-xs-3 col-lg-3">Price</div>
+			<div class="col-sm-3 col-xs-3 col-lg-3">Max</div>
+			<div class="col-sm-3 col-xs-3 col-lg-3">Min</div>
+		</div>
+		<div id="shippingProvider-list"></div>
+		<div class="col-xs-12 col-sm-12 col-lg-12">
+			<p style="text-align:right">
+				<a href="#"><span id="edit">Edit</span></a>
+				<img src="/TalalahMerchant/content/util/img/loader.gif" id="loader" style="display:none;">
+				<button type="button" class="btn btn-default btn-sm" style="display:none;" id="ok">OK</button> 
+			</p>
+			<p class="alert alert-success space success2" style="display:none;">
+				<span class="glyphicon glyphicon-ok"></span> SUCCESS !
+			</p>
+			<p class="alert alert-danger space error2" style="display:none;">
+				<span class="glyphicon glyphicon-remove"></span>ERROR !
+			</p>		
+		</div>
+	</script>
+	
+	<script type="text/template" id="itemShippingProviderList">
+		<div class="col-xs-1 col-sm-1 col-lg-1">
+			<input type="checkbox" value="{{id}}">
+			<input type="hidden" value="{{name}}" name="name">
+			<input type="hidden" value="{{pId}}" name="pId">
+		</div>
+		<div class="col-xs-2 col-sm-2 col-lg-2">
+			{{name}}
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<div class="input-group input-group-sm">
+				<input type="text" class="form-control" name="price" placeholder="price USD" value="{{price}}">
+			</div>
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<div class="input-group input-group-sm">
+				<input type="text" class="form-control" name="max" placeholder="maximum days" value="{{max}}">
+			</div>
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<div class="input-group input-group-sm">
+				<input type="text" class="form-control" name="min" placeholder="minimum days" value="{{min}}">
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="shippingProviders">
+		<div class="col-xs-1 col-sm-1 col-lg-1">
+			{{itemShippingProviderId.shippingProvider.id}}
+		</div>
+		<div class="col-xs-2 col-sm-2 col-lg-2">
+			{{itemShippingProviderId.shippingProvider.name}}
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			{{price}}
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			{{max}}
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			{{min}}
+		</div>
+	</script>
+	
+	<script type="text/template" id="product-travel">
+		<div class="col-xs-6 col-lg-6 col-sm-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-tag"></span> Detail
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm space">
+								<span class="input-group-addon" title="accommodation">
+									ACCOM.
+								</span>
+	  							<input type="text" class="form-control" placeholder="accommodation" name="accom" value="{{accom}}" disabled>
+								<span class="input-group-addon" title="Product's price">
+									<span class="glyphicon glyphicon-bed"></span>
+								</span>
+							</div>
+							<div class="input-group input-group-sm space">
+								<span class="input-group-addon" title="adult">
+									Adult
+								</span>
+	  							<input type="text" class="form-control" placeholder="Adult" name="adult" value="{{adult}}" disabled>
+									<span class="input-group-addon" title="start">
+									<span class="glyphicon glyphicon-user"></span>
+								</span>
+							</div>
+							<div class="input-group input-group-sm space">
+								<span class="input-group-addon" title="child">
+									Child
+								</span>
+	  							<input type="text" class="form-control" placeholder="Childs" name="child" value="{{child}}" disabled>
+									<span class="input-group-addon" title="start">
+									<span class="glyphicon glyphicon-user"></span>
+								</span>
+							</div>
+							<div class="input-group input-group-sm space">
+								<span class="input-group-addon" title="pickup">
+									Pick Up
+								</span>
+	  							<input type="text" class="form-control" placeholder="Pick up place" name="pickUp" value="{{pickUp}}" disabled>
+								<span class="input-group-addon" title="Product's price">
+									<span class="glyphicon glyphicon-map-marker"></span>
+								</span>
+							</div>
+							<div class="input-group input-group-sm space">
+								<span class="input-group-addon" title="transportation">
+									TRANSPORT
+								</span>
+	  							<input type="text" class="form-control" placeholder="Transportation" name="transport" value="{{transport}}" disabled>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-lg-6">
+							<div class="input-group input-group-sm space date" id="start">
+								<span class="input-group-addon" title="start date">
+									START
+								</span>
+	  							<input type="text" class="form-control" placeholder="Start's Date"  name="start" value="{{start}}" disabled>
+								<span class="input-group-addon" title="start">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+							<div class="input-group input-group-sm space date" id="end">
+								<span class="input-group-addon" title="end date">
+									END
+								</span>
+	  							<input type="text" class="form-control" placeholder="End's Date" name="end" value="{{end}}" disabled>
+								<span class="input-group-addon" title="end">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+							<div class="input-group input-group-sm space">
+								<span class="input-group-addon" title="Days">
+									Days
+								</span>
+	  							<input type="text" class="form-control" placeholder="Days" name="days" value="{{days}}" disabled>
+							</div>
+							<div class="input-group input-group-sm space">
+								<span class="input-group-addon" title="guide">
+									Guide
+								</span>
+	  							<input type="text" class="form-control" placeholder="Guide" name="guide" value="{{guide}}" disabled>
+								<span class="input-group-addon" title="Product's price">
+									<span class="glyphicon glyphicon-user"></span>
+								</span>
+							</div>
+							<div class="input-group input-group-sm space">
+								<span class="input-group-addon" title="Food">
+									FOOD
+								</span>
+	  							<input type="text" class="form-control" placeholder="Food" name="food" value="{{food}}" disabled>
+								<span class="input-group-addon" title="Product's price">
+									<span class="glyphicon glyphicon-cutlery"></span>
+								</span>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-lg-12" style="text-align:center;">
+							<p class="alert alert-success space success1" style="display:none;">
+								<span class="glyphicon glyphicon-ok"></span> SUCCESS !
+							</p>
+							<p class="alert alert-danger space error1" style="display:none;">
+								<span class="glyphicon glyphicon-remove"></span>ERROR !
+							</p>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-lg-12" style="text-align:right;">
+							<img id="infoloader1" src="/TalalahMerchant/content/util/img/loader.gif" style="display: none;">
+							<a href="#"><span id="edit1">Edit</span></a>
+							<button type="button" class="btn btn-default" style="display:none;" id="ok1">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<div id="destination-panel"></div>
+		</div>
+	
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<div id="activity-panel"></div>
+		</div>
+		
+	</script>
+	
+	<script type="text/template" id="destination-panel-temp">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-map-marker"></span> Destinations
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12 col-sm-12 col-lg-12" style="font-weight:bold;">
+					<div class="col-xs-4 col-sm-4 col-lg-4">ID</div>
+					<div class="col-xs-8 col-sm-8 col-lg-8">Destination</div>
+				</div>
+				<!-- Destination -->
+				<div id="destinations"></div>
+				<div class="col-xs-12 col-sm-12 col-lg-12 space" style="text-align:right;">
+					<a href="#"><span id="edit">Edit</span></a>
+					<img id="infoloader" src="/TalalahMerchant/content/util/img/loader.gif" style="display: none;">
+					<button type="button" class="btn btn-default" style="display:none;" id="ok">OK</button>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-12" style="text-align:center;">
+					<p class="alert alert-success" style="display:none;">
+						<span class="glyphicon glyphicon-ok"></span> SUCCESS !
+					</p>
+					<p class="alert alert-danger" style="display:none;">
+						<span class="glyphicon glyphicon-remove"></span>ERROR !
+					</p>
+				</div>
+			</div>
+		</div>
+	
+	</script>
+	
+	<script type="text/template" id="activity-panel-temp">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-th-large"></span> Activities
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12 col-sm-12 col-lg-12" style="font-weight:bold;">
+					<div class="col-xs-4 col-sm-4 col-lg-4">ID</div>
+					<div class="col-xs-8 col-sm-8 col-lg-8">Activity</div>
+				</div>
+				<!-- Activities -->
+				<div id="activities"></div>
+				<div class="col-xs-12 col-sm-12 col-lg-12 space" style="text-align:right;">
+					<a href="#"><span id="edit">Edit</span></a>
+					<img id="infoloader" src="/TalalahMerchant/content/util/img/loader.gif" style="display: none;">
+					<button type="button" class="btn btn-default" style="display:none;" id="ok" >OK</button>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-lg-12" style="text-align:center;">
+					<p class="alert alert-success" style="display:none;">
+						<span class="glyphicon glyphicon-ok"></span>SUCCESS !
+					</p>
+					<p class="alert alert-danger" style="display:none;">
+						<span class="glyphicon glyphicon-remove"></span>ERROR !
+					</p>
+				</div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="short-describe">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-file"></span> Description
+			</div>
+			<div class="panel-body">
+				 <div class="form-group">
+ 				 	<label for="short-des">Introduction :</label>
+				 	<textarea class="form-control" rows="7" placeholder="Product's description ..." id="short-des" style="border:none;resize:none;" disabled>{{shDes}}</textarea>
+				</div>
+				<div class="col-sm-12 col-xs-12 col-lg-12">
+					<a href="#"><span id="edit">Edit</span></a>
+					<button type="button" class="btn btn-default" style="display: none;" id="ok">OK</button>
+					<p class="alert alert-success space" style="display:none;">
+						<span class="glyphicon glyphicon-ok"></span> SUCCESS !
+					</p>
+					<p class="alert alert-danger space" style="display:none;">
+						<span class="glyphicon glyphicon-remove"></span>ERROR !
+					</p>
+					<img src="/TalalahMerchant/content/util/img/loader.gif" style="display: none;">
+				<div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="long-describe">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-file"></span> Detail
+			</div>
+			<div class="panel-body">
+				<label for="long-des">Introduction :</label>
+				<div class="form-group">
+				 	<textarea class="form-control" rows="15" id="long-des" placeholder="Product's detail ..." style="border:none;resize:none;" disabled>{{loDes}}</textarea>
+				</div>
+				<div class="row space">
+					<div class="col-sm-6 col-xs-6 col-lg-6"></div>
+					<div class="col-sm-4 col-xs-4 col-lg-4" style="text-align:right;">
+						<span class="alert alert-success" style="display:none; text-align:center;">
+							<span class="glyphicon glyphicon-ok"></span> SUCCESS !
+						</span>
+						<span class="alert alert-danger" style="display:none; text-align:center;">
+							<span class="glyphicon glyphicon-remove"></span>ERROR !
+						</span>
+					</div>
+					<div class="col-sm-2 col-xs-2 col-lg-2" style="text-align:right;">
+						<a href="#"><span id="edit">Edit</span></a>
+						<img src="/TalalahMerchant/content/util/img/loader.gif" style="display: none;">
+						<button type="button" class="btn btn-default" style="display: none;" id="ok">OK</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="destinations">
+		<div class="col-xs-4 col-sm-4 col-lg-4">
+			{{id}}
+		</div>
+		<div class="col-xs-8 col-sm-8 col-lg-8">
+			{{name}}
+		</div>
+	</script>
+	
+	<script type="text/template" id="destinationEditTemp">
+		<div class="col-xs-4 col-sm-4 col-lg-4">
+			<input type="checkbox" value="{{id}}"/>
+			<input type="hidden" value="{{name}}"/>
+		</div>
+		<div class="col-xs-8 col-sm-8 col-lg-8">
+			{{name}}
+		</div>
+	</script>
+	
+	<script type="text/template" id="activityEditTemp">
+		<div class="col-xs-4 col-sm-4 col-lg-4">
+			<input type="checkbox" value="{{id}}"/>
+			<input type="hidden" value="{{name}}"/>
+		</div>
+		<div class="col-xs-8 col-sm-8 col-lg-8">
+			{{name}}
+		</div>
+	</script>
+	
+	<script type="text/template" id="activities">
+		<div class="col-xs-4 col-sm-4 col-lg-4 ">
+			{{id}}
+		</div>
+		<div class="col-xs-8 col-sm-8 col-lg-8">
+			{{name}}
+		</div>
+	</script>
+	
+	<!-- start related image template -->
+	
+	<script type="text/template" id="productRelatedImg">
+	  <div class="thumbnail">
+		<img width="200" height="250" id="img">
+		<div class="caption" style="text-align:center;">
+			<img src="/TalalahMerchant/content/util/img/loader.gif" id="load" style="display:none;">	
+			<input type="file" id="imgFile" style="display:none;">
+			<input type="hidden" name="prdId" value="{{product.id}}"/>
+			<input type="hidden" name="picName" value="{{picName}}"/>
+
+			<div class="alert alert-success" role="alert" style="display:none;">
+				<span class="glyphicon glyphicon-ok" ></span>
+			</div>
+			
+			<div class="alert alert-danger" role="alert" style="display:none;">
+				<span class="glyphicon glyphicon-remove" ></span>
+			</div>
+
+			<button type="button" class="btn btn-default btn-sm" id="uploadBtn">
+				<span class="glyphicon glyphicon-plus-sign"></span>upload
+			</button>
+			
+			<p style="text-align:right;margin-top:3px; display:none;" id="editable">
+				<a href="#" id="removeBtn" role="button" class="btn btn-default btn-sm" disabled>
+					<span class="glyphicon glyphicon-trash" title="remove"></span>
+				</a>
+			</p>
+		</div>
+	  </div>
+	</script>
+	
+	<script type="text/template" id="productRelatedImgs">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-picture"></span> Images
+			</div>
+		 	<div class="panel-body">
+		  		<div id="imgs"></div>
+				<div class="row" style="text-align:right;">
+					<div class="col-sm-12 col-xs-12 col-lg-12">
+						<a href="#" class="btn btn-default btn-sm" role="button" id="add" style="display:none;">
+							<span class="glyphicon glyphicon-plus" ></span>Add
+						</a>
+						<a href="#" class="btn btn-default btn-sm" role="button" id="edit">
+							<span class="glyphicon glyphicon-pencil"></span>Edit
+						</a>
+		  			</div>
+				</div>
+		 	</div>
+		</div>
+	</script>
+	
+	<!-- end related product image -->
+	
+	<script type="text/template" id="productsTemp">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#Home">Home</a></li>
+				<li class="active">Products</li>
+			</ol>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+			<div c">lass="col-xs-2 col-sm-2 col-lg-2"></div>
+			<div class="col-xs-8 col-sm-8 col-lg-8">
+				<div class="input-group">
+			      <input type="text" class="form-control" placeholder="Search for...">
+			      <span class="input-group-btn">
+			        <button class="btn btn-default" type="button">
+			        	<span class="glyphicon glyphicon-search"></span>
+			        </button>
+			      </span>
+			    </div><!-- /input-group -->
+			  </div>
+			</div>
+			<div class="col-xs-2 col-sm-2 col-lg-2"></div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<div id="products"></div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<div style="text-align:center;">
+					<button type="button" class="btn btn-default">Load More</button>
+				</div>
+			</div>
+		</div>
+
+	</script>
+</div>

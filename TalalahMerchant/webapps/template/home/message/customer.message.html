@@ -1,0 +1,332 @@
+<div>
+	<!-- Message Panel -->
+	<script type="text/template" id='inboxMessagePanel'>
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li><a href="#Home">Home</a></li>
+				<li><a href="#Home/Customer/{{id}}">Customer</a></li>
+				<li class="active">Inbox</li>
+			</ol>
+		</div>
+		<div class="row space" title="{{title}}">
+			<div class="col-lg-8 col-xs-8 col-sm-8">
+				<span class="glyphicon glyphicon-inbox"></span> Inbox <span class="badge">{{inboxNum}}</span>
+			</div>
+			<div class="col-lg-1 col-xs-1 col-sm-1">
+				<img src="/Talalah/content/util/img/loader.gif" id="loading0" style="display:none;"/>
+			</div>
+			<div class="col-lg-3 col-xs-3 col-sm-3" style="text-align:right;">
+				<div class="input-group">
+                	<input type="text" class="form-control" placeholder="Message's Subject" id="search-text">
+                	<div class="input-group-btn">
+						<button type="button" class="btn btn-default" id="search">
+							Go!
+						</button>
+					</div>
+            	</div>
+			</div>
+		</div>
+		<div class="row space">
+			<div class="col-xs-3 col-sm-3 col-lg-3"></div>
+			<div class="col-xs-6 col-sm-6 col-lg-6" id="alert-msg" style="display:none;">
+				<p class="alert alert-danger" style="width:100%; text-align:center"> Error ! </p>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-lg-3"></div>
+		</div>
+		<div class="row space" style="font-weight:bold;font-size:13px; border-bottom:1px solid #CCC; text-align:left; color:#12C2E5;">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+			<div class="col-xs-1 col-sm-1 col-lg-1"> <span class="glyphicon glyphicon-envelope"></span></div>
+			<div class="col-xs-2 col-sm-2 col-lg-2"> <span class="glyphicon glyphicon-user"></span>Sender</div>
+			<div class="col-xs-2 col-sm-2 col-lg-2"> <span class="glyphicon glyphicon-file"></span>Subject</div>
+			<div class="col-xs-3 col-sm-3 col-lg-3"> <span class="glyphicon glyphicon-file"></span>Body </div>
+			<div class="col-xs-3 col-sm-3 col-lg-3"> <span class="glyphicon glyphicon-calendar"></span> Date</div>
+			<div class="col-xs-1 col-sm-1 col-lg-1"> <span class="glyphicon glyphicon-trash"></span> Delete</div>
+			</div>
+		</div>
+		<div class="row space">
+			<div id="messageDataGrid">
+				<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+				<div class="col-xs-4 col-sm-4 col-lg-4 space">
+					<div style="display:none; text-align:center;" id="wait-loader">
+						<img src="/Talalah/content/util/img/loader.gif" id="loading"/>
+						Loading ... 
+					</div>
+					<div class="alert alert-info" style="display:none;text-align:center;" id="inboxGrid">
+						You have no messages
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+			</div>
+		</div>
+		<div class="row"  style="margin-top : 20px !important;">
+			<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+			<div class="col-xs-4 col-sm-4 col-lg-4" style="text-align:center;">
+				<div style="display:none;" id="loader" class="space">
+					<img src="/Talalah/content/util/img/loader.gif" id="loading"/>
+					Loading ... 
+				</div>
+				<button type="button" class="btn btn-default" style="display:none;" id="loadmore">Load More</button>
+				<button type="button" class="btn btn-default" id="loadsearch" style="display:none;">Load More</button>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+		</div>
+	</script>
+	
+	<script type="text/template" id='sentMessagePanel'>
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li><a href="#Home">Home</a></li>
+				<li><a href="#Home/Customer/{{id}}">Customer</a></li>
+				<li class="active">Sent</li>
+			</ol>
+		</div>
+		<div class="row space" title="{{title}}">
+			<div class="col-lg-8 col-xs-8 col-sm-8">
+				<span class="glyphicon glyphicon-send"></span>
+				 Sent &nbsp; <span class="badge">{{sentNum}}</span>
+			</div>
+			<div class="col-lg-1 col-xs-1 col-sm-1">
+				<img src="/Talalah/content/util/img/loader.gif" id="loading0" style="display:none;"/>
+			</div>
+			<div class="col-lg-3 col-xs-3 col-sm-3" style="text-align:right;">
+				<div class="input-group">
+                	<input type="text" class="form-control" placeholder="Message's Subject" id="search-text">
+                	<div class="input-group-btn">
+						<button type="button" class="btn btn-default" id="search">
+							Go!
+						</button>
+					</div>
+            	</div>
+			</div>
+		</div>
+		<div class="row space">
+			<div class="col-xs-3 col-sm-3 col-lg-3"></div>
+			<div class="col-xs-6 col-sm-6 col-lg-6" id="alert-msg" style="display:none;">
+				<p class="alert alert-danger" style="width:100%; text-align:center"> Error ! </p>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-lg-3"></div>
+		</div>
+		<div class="row space" style="font-weight:bold;font-size:13px; border-bottom:1px solid #CCC; text-align:left; color:#12C2E5;">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+			<div class="col-xs-1 col-sm-1 col-lg-1"> <span class="glyphicon glyphicon-envelope"></span></div>
+			<div class="col-xs-2 col-sm-2 col-lg-2"> <span class="glyphicon glyphicon-user"></span>Receiver</div>
+			<div class="col-xs-2 col-sm-2 col-lg-2"> <span class="glyphicon glyphicon-file"></span>Subject</div>
+			<div class="col-xs-3 col-sm-3 col-lg-3"> <span class="glyphicon glyphicon-file"></span>Body </div>
+			<div class="col-xs-3 col-sm-3 col-lg-3"> <span class="glyphicon glyphicon-calendar"></span> Date</div>
+			<div class="col-xs-1 col-sm-1 col-lg-1"> <span class="glyphicon glyphicon-trash"></span> Delete</div>
+			</div>
+		</div>
+		<div class="row space">
+			<div id="sentMessageDataGrid">
+				<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+				<div class="col-xs-4 col-sm-4 col-lg-4 space">
+					<div class="alert alert-info" style="display:none;text-align:center;" id="inboxGrid">
+						You have no messages
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+			</div>
+		</div>
+		<div class="row space" style="text-align:center;">
+			<div style="display:none;" id="loader">
+				<p>
+					<img src="/Talalah/content/util/img/loader.gif" id="loading"/>
+				</p>
+				<p>	Loading ... </p>
+			</div>
+			<button type="button" class="btn btn-default" id="load-more">Load More</button>
+			<button type="button" class="btn btn-default" id="loadsearch" style="display:none;">Load More</button>
+		</div>
+	</script>
+	
+	
+	<script type="text/template" id="messageView">
+		<div class="col-xs-1 col-sm-1 col-lg-1" title="{{id}}">
+			<a href="#Home/Customer/{{receiver.id}}/Inbox/{{id}}" style="display:none;">
+				 <span id="msgViewer">{{id}}</span>
+			</a>
+			<span id="marker"></span>
+		</div>
+		<div class="col-xs-2 col-sm-2 col-lg-2">
+			<div class="row">
+				<span class="glyphicon glyphicon-user"></span>
+				&nbsp; {{sender.usrname}}
+			</div>
+		</div>
+		<div class="col-xs-2 col-sm-2 col-lg-2">
+			{{subject}}
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<p class="text-limiter">{{body}}</p>
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<span class="glyphicon glyphicon-calendar"></span>{{date}} {{time}}
+		</div>
+		<div class="col-xs-1 col-sm-1 col-lg-1">
+			<a href="#" title="delete">
+				<span class="glyphicon glyphicon-trash" id="del"></span>
+			</a>
+		</div>
+	</script>
+	
+	<script type="text/template" id="sentMsgView">
+		<div class="col-xs-1 col-sm-1 col-lg-1" title="{{id}}">
+			<a href="#Home/Customer/{{sender.id}}/Sent/{{id}}" style="display:none;">
+				 <span id="viewMsg">{{id}}</span>
+			</a>
+			<span id="marker"></span>
+		</div>
+		<div class="col-xs-2 col-sm-2 col-lg-2">
+			<div class="row">
+				<span class="glyphicon glyphicon-user"></span>
+				&nbsp; {{sender.usrname}}
+			</div>
+		</div>
+		<div class="col-xs-2 col-sm-2 col-lg-2">
+			{{subject}}
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<p class="text-limiter">{{body}}</p>
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<span class="glyphicon glyphicon-calendar"></span>{{date}} {{time}}
+		</div>
+		<div class="col-xs-1 col-sm-1 col-lg-1">
+			<a href="#" title="delete">
+				<span class="glyphicon glyphicon-trash" id="del"></span>
+			</a>
+		</div>
+	</script>
+	
+	<script type="text/template" id="msgViewer">
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li><a href="#Home">Home</a></li>
+				<li><a href="#Home/Customer/{{receiver.id}}">Cusotmer</a></li>
+				<li><a href="#Home/Customer/{{receiver.id}}/Inbox"><span id="inbox-link">Inbox</span></a></li>
+				<li class="active">{{id}}</li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-sm-2 col-xs-2"></div>
+			<div class="col-lg-8 col-sm-8 col-xs-8">
+				<div class="alert alert-success" style="display:none;text-align:center;"> SUCCESS ! </div>
+				<div class="alert alert-danger" style="display:none;text-align:center;"> ERROR ! </div>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-2"></div>
+		</div>
+		<div class="row">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">
+					<span class="glyphicon glyphicon-file"></span> #{{id}}
+					<span class="glyphicon glyphicon-calendar"></span> {{date}} {{time}}
+				</h3>
+			  </div>
+			  <div class="panel-body">
+				<div class="input-group space">
+	                <span class="input-group-addon">Sender</span>
+	                <input type="text" class="form-control" value="{{sender.usrname}}" disabled>
+	            </div>
+				<div class="input-group space">
+	                <span class="input-group-addon">Subject</span>
+	                <input type="text" class="form-control" value="{{subject}}" disabled>
+	            </div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-lg-12">
+			    		<textarea style="width:100%;height:180px; border:none; resize: none;">{{body}}</textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-lg-12">
+						<textarea style="width:100%;height:150px; border:none;; display:none; border-top:1px solid #CCC;" id="reply-box"></textarea>	
+					</div>
+				</div>
+			  </div>
+			  <div class="panel-footer">
+				<div class="row">
+					<div class="col-xs-1 col-sm-1 col-lg-1">
+						<button class="btn btn-default" id='reply' title="reply">
+							<span class="glyphicon glyphicon-comment"></span>
+						</button>
+						<button class="btn btn-default" id='send' title="reply" style="display:none;">
+							<span class="glyphicon glyphicon-send"></span>
+						</button>
+					</div>
+					<div class="col-xs-1 col-sm-1 col-lg-1">
+						<button class="btn btn-default" id='back' title="Back to inbox">
+							<span class="glyphicon glyphicon-backward"></span>
+						</button>
+					</div>
+					<div class="col-xs-1 col-sm-1 col-lg-1">
+						<button class="btn btn-default" id='delete' title="Delete">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</div>
+				</div>
+			  </div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="sendMessageViewer">
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li><a href="#Home">Home</a></li>
+				<li><a href="#Home/Customer/{{sender.id}}">Cusotmer</a></li>
+				<li><a href="#Home/Customer/{{sender.id}}/Sent"><span id="sent-link">Sent</span></a></li>
+				<li class="active">{{id}}</li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-sm-2 col-xs-2"></div>
+			<div class="col-lg-8 col-sm-8 col-xs-8">
+				<div class="alert alert-success" style="display:none;text-align:center;"> SUCCESS ! </div>
+				<div class="alert alert-danger" style="display:none;text-align:center;"> ERROR ! </div>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-2"></div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">
+				<span class="glyphicon glyphicon-file"></span> #{{id}}
+				<span class="glyphicon glyphicon-calendar"></span> {{date}} {{time}}
+			</h3>
+		  </div>
+		  <div class="panel-body">
+			<div class="input-group space">
+                <span class="input-group-addon">Receiver</span>
+                <input type="text" class="form-control" value="{{receiver.name}}" disabled>
+            </div>
+			<div class="input-group space">
+                <span class="input-group-addon">Subject</span>
+                <input type="text" class="form-control" value="{{subject}}" disabled>
+            </div>
+			<div class="input-group space">
+                <span class="input-group-addon">Date</span>
+                <input type="text" class="form-control" value="{{date}} {{time}}" disabled>
+            </div>
+		   	<div class="col-xs-12 col-sm-12 col-lg-12">
+			    <textarea style="width:100%;height:180px; border:none; resize: none;">{{body}}</textarea>
+			</div>
+		  </div>
+		  <div class="panel-footer">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-lg-12">
+					<div class="col-xs-1 col-sm-1 col-lg-1">
+						<button class="btn btn-default" id='back' title="Back to Sent">
+							<span class="glyphicon glyphicon-backward"></span>
+						</button>
+					</div>
+					<div class="col-xs-1 col-sm-1 col-lg-1">
+						<button class="btn btn-default" id='delete' title="Delete">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		  </div>
+		</div>
+	</script>
+	
+</div>

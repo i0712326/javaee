@@ -1,0 +1,87 @@
+<div>
+	<div class="row">
+		<ol class="breadcrumb">
+		  <li><a href="#Home">Home</a></li>
+		  <li class="active">Merchant</li>
+		</ol>
+	</div>
+	<div class="row">
+		<div class="col-sm-8 col-xs-8 col-lg-8">
+			<div class="input-group space">
+				  <input type="text" class="form-control" placeholder="Merchant's name" id="search-val">
+				  <span class="btn btn-default input-group-addon" id="search" title="search merchant">
+				  	<span class="glyphicon glyphicon-search"></span>
+				  </span>
+			</div>
+		</div>
+		<div class="col-sm-2 col-xs-2 col-lg-2">
+			<div class="input-group space">
+			  <span class="btn btn-default" id="add" title="add merchant">
+			  	<span class="glyphicon glyphicon-plus" title="Add Merchant"></span>Add
+			  </span>
+			</div>
+		</div>
+		<div class="col-sm-2 col-xs-2 col-lg-2">
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">
+					<span class="glyphicon glyphicon-user" title="User Name"></span>
+				</span>
+				<input type="text" class="form-control" placeholder="Username" value="{{name}}" disabled>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row well">
+		<div id="merchant-list"></div>
+	</div>
+	
+	<div>
+		<!-- confirm delete dialog -->
+		<div class="modal fade" tabindex="-1" role="dialog" id="DeleteModal">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">Confirm Dialog</h4>
+					</div>				
+						<div class="modal-body" style="text-align: center;">
+							<div id="confirm-content"></div>
+						</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="confirm">Confirm</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		
+		<!-- result dialog -->
+		<div class="modal fade" tabindex="-1" role="dialog" id="ResultModal">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">Result Dialog</h4>
+					</div>				
+						<div class="modal-body" style="text-align: center;">
+							<div id="result-content"></div>
+						</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	
+</div>

@@ -1,0 +1,29 @@
+<div>
+	<script type="text/template" id="prevBtn">
+		<span class="{{lbBtn3}}" aria-hidden="true"></span>
+		<span class="sr-only">{{lbBtn4}}</span>
+	</script>
+	
+	<script type="text/template" id="nextBtn">
+		<span class="{{lbBtn3}}" aria-hidden="true"></span>
+		<span class="sr-only">{{lbBtn4}}</span>
+	</script>
+	<script type="text/template" id="carouselImage">
+		<img alt="{{name}}">
+	</script>
+	
+	<script type="text/template" id="productBox">
+		<div class="thumbnail">
+			<img src="" alt="{{name}}"/>
+			<div class="caption">
+				<h4 title="name" class="text-limiter">
+					<a href="#Home/Product/{{merchant.merchantCode.mcc}}/{{merchant.mcId}}/{{id}}">{{name}}</a>
+				</h4>
+				<h4 title="price"> $ {{price}} USD </h4>
+				<p class="text-limiter">
+					{{shDes}}
+				</p>
+			</div>
+		</div>
+	</script>
+</div>

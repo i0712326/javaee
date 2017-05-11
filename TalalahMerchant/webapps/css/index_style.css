@@ -1,0 +1,339 @@
+@CHARSET "ISO-8859-1";
+
+body {
+    padding-top: 70px; 
+}
+
+/***
+*
+* Product Detail Style
+*
+***/
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control, .item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    /* padding-right: 10px;
+    padding-left: 10px; */
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+.detail{
+	width:330px;
+	margin:10px;
+}
+
+.descr{
+	padding: 2px;
+	margin: 10px;
+	width: 340px;
+}
+.descr p{
+	padding:10px;
+}
+
+.product_option a{
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.prdOpt{
+	border:1px solid #CCC;
+}
+
+.social_opt{
+	padding-left:20px;
+}
+
+.social_opt a{
+	margin:3px;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+.item_option{
+	padding : 15px;
+	font-family:Arial, Georgia;
+}
+
+.item_attribute{
+	margin:10px
+}
+
+.prd_travel{
+	font-family:Arial, Georgia;
+}
+
+.prd_travel p{
+	margin:5px;
+	padding:5px;
+}
+
+.prd_travel p span{
+	margin-right:15px;
+}
+
+.prd_travel p input {
+	margin-right:15px;
+}
+
+/**
+*
+* Product Image Detail CSS
+*
+***/
+
+#prdImgs{
+	width:150px;
+	height:300px;
+	border:1px solid #CC;
+}
+
+.prdImg{
+	margin:2px;
+	width:58px;
+	height:78px;
+}
+
+/***
+*
+* Zoom Product Image
+*
+***/
+
+#show {
+	width: 240px;
+	height: 338px;
+	overflow: hidden;
+	position: relative;
+	left: 0;
+}
+
+#show_mark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 100px;
+	background-color: #000;
+	opacity: .5;
+	filter: alpha(opacity = 50);
+	cursor: crosshair;
+	border: 1px solid #999;
+	display: none;
+}
+
+#zoom {
+	position: absolute;
+	left: 250px;
+	top: 0;
+	z-index: 3;
+	width: 400px;
+	height: 400px;
+	display: none;
+	overflow: hidden;
+	border: 1px solid #eee;
+}
+
+#zoom img {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+/***
+*
+* Search Product style
+*
+***/
+.product-block{
+	border:1px solid #CCC;
+	margin:5px;
+	border-radius:4px;
+}
+
+.product-line{
+	padding:5px 5px 5px 50px;
+}
+
+.product-img{
+	padding-top : 10px;
+}
+
+/***
+*
+* Recommend Item List
+*
+***/
+
+#recommendItem{
+	height:1700px;
+	width:230px;
+	border : 1px solid #CCC;
+}
+
+/***
+*
+* Shopping Cart Notification Style
+*
+***/
+
+.noti_Container {
+    position:relative;
+}
+.noti_bubble {
+    position:absolute;    /* This breaks the div from the normal HTML document. */
+    top: -6px;
+    right:-6px;
+    padding:1px 2px 1px 2px;
+    background-color:red; /* you could use a background image if you'd like as well */
+    color:white;
+    font-weight:bold;
+    font-size:0.7em;
+    border-radius:30px;
+    box-shadow:1px 1px 1px gray;
+}
+
+
+/***
+*
+* Comment Block CSS
+*
+***/
+
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #ccc;
+}
+
+.tip-up {
+  top: -25px; /* Same as body margin top + border */
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+.tip-down {
+  bottom: -25px;
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.tip-left {
+  top: 10px;
+  left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.tip-right {
+  top: 10px;
+  right: -25px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.dialogbox .body {
+  position: relative;
+  /* max-width: 300px; */
+  max-width:100%;
+  height: auto;
+  margin: 20px 10px;
+  padding: 5px;
+ /*  background-color: #DADADA; */
+  border-radius: 3px;
+  border: 2px solid #ccc;
+}
+
+.body .message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}
+
+.destClass{
+	padding-left:20px;
+}
+
+.comment_header{
+	padding : 10px 5px 5px;
+	margin : 5px;
+}
+
+.comment_body{
+	padding : 10px 5px 5px 10px;
+	margin : 10px 5px 5px;
+}
+
+
+/**
+*
+* CSS for image thumbnail slider
+*
+**/
+
+/***
+*
+* Footer
+*
+***/
+footer {
+    margin: 50px 0;
+}
+
+.space{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.text-limiter {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}

@@ -1,0 +1,181 @@
+<div>
+	<ol class="breadcrumb">
+	  <li><a href="#Home">Home</a></li>
+	  <li><a href="#Merchant">Merchant</a></li>
+	  <li class="active">Add</li>
+	</ol>
+	<form action="#" method="post" enctype="multipart/form-data" id="merchant-add-form">
+		<div class="container well">
+			<div class="row">
+				<div class="page-header">
+					<h3> <span class="glyphicon glyphicon-user"></span> &nbsp;Information </h3>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-lg-6">
+					<div class="input-group space">
+					  <span class="input-group-addon">ID</span>
+					  <input type="text" class="form-control" placeholder="Merchant's ID" aria-describedby="id" id="id" name="id" value="{{mcId}}">
+					</div>
+					
+					<div class="input-group space">
+					  <span class="input-group-addon">MCC</span>
+					  <input type="text" class="form-control" placeholder="Merchant Category Code" aria-describedby="mcc" id="mcc" name="mcc" value="{{merchantCode.mcc}}">
+					   <span class="input-group-addon"><a href="#" id="mccWindow"><span class="glyphicon glyphicon-new-window" ></span></a></span>
+					</div>
+					
+					<div class="input-group space">
+					  <span class="input-group-addon">NAME</span>
+					  <input type="text" class="form-control" placeholder="Merchant's NAME" aria-describedby="name" id="name" name="name" value="{{name}}">
+					</div>
+					
+					<div class="input-group space">
+					  <span class="input-group-addon">URL</span>
+					  <input type="text" class="form-control" placeholder="Merchant's URL" aria-describedby="url" id="url" name="url" value="{{url}}">
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-lg-6 merchant_logo">
+						<div>
+							<img alt="merchant logo" src="http://placehold.it/252x200" width="252" height="200" id="logoImg"/>
+							<input id="lefile" type="file" style="display:none">
+							<div class="input-group space">
+							  <input type="text" id="photoCover" class="form-control" placeholder="Select Image PNG File..." value="{{logo}}">
+							  <span class="input-group-addon">
+							  	<a href="#"  id="merchantImg">
+				  					<span class="glyphicon glyphicon-file"></span>
+				  				</a>
+							  </span>
+							</div>
+						</div>
+					</div>
+			</div>	
+			<div class="row">
+				<div class="page-header">
+					<h3> <span class="glyphicon glyphicon-globe"></span> &nbsp;Address</h3>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-lg-6">
+					<div class="input-group space">
+					  <span class="input-group-addon">Country</span>
+					  <input type="text" value="LAOS" class="form-control" placeholder="Merchant's Country" aria-describedby="country" id="country" name="country" disabled>
+					</div>
+					
+					<div class="input-group space">
+						  <span class="input-group-addon">City</span>
+						  <input type="text"class="form-control" placeholder="Merchant's City" aria-describedby="city" id="pvId" name="pvId" value="{{address.district.name}}">
+						  <input type="hidden" id="addrId" value=""/>
+						  <span class="input-group-addon"><a href="#" id="cityWindow"><span class="glyphicon glyphicon-new-window" ></span></a></span>
+					</div>
+					
+					<div class="input-group space">
+						  <span class="input-group-addon">Postal Code</span>
+						  <input type="text" class="form-control" placeholder="Merchant's Postal Code" aria-describedby="postal" id="postal" name="postal" value="{{address.postal}}">
+					</div>
+				</div>
+				
+				<div class="col-xs-6 col-sm-6 col-lg-6">
+				
+					<div class="input-group space">
+					  <span class="input-group-addon">Email</span>
+					  <input type="text" class="form-control" placeholder="Merchant's Email" aria-describedby="email" id="email" name="email" value="{{address.email}}">
+					</div>
+					
+					
+					<div class="input-group space">
+						  <span class="input-group-addon">Telephone</span>
+						  <input type="text" class="form-control" placeholder="Merchant's Telephone" aria-describedby="tel" id="tel" name="tel" value="{{address.tel}}">
+					</div>
+					
+					<div class="input-group space">
+						  <span class="input-group-addon">Fax</span>
+						  <input type="text" class="form-control" placeholder="Merchant's Fax" aria-describedby="fax" id="fax" name="fax" value="{{address.fax}}">
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-lg-12">
+					<div class="input-group space">
+					  <span class="input-group-addon">Address1</span>
+					  <input type="text" class="form-control" placeholder="Street/Road, Address" aria-describedby="addr1" id="addr1" name="addr1" value="{{address.address1}}">
+					</div>
+					
+					<div class="input-group space">
+						  <span class="input-group-addon">Address2</span>
+						  <input type="text" class="form-control" placeholder="Apartment, build, block, floor" aria-describedby="addr2" id="addr2" name="addr2" value="{{address.address2}}">
+					</div>
+					
+					<div class="input-group space">
+						  <span class="input-group-addon">Address3</span>
+						  <input type="text" class="form-control" placeholder="Other Address" aria-describedby="addr3" id="addr3" name="addr3" value="{{address.address3}}">
+					</div>
+				</div>
+			</div>
+			<div class="row" style="text-align: center;">
+				<button type="submit" class="btn btn-primary" id="submit">submit</button>
+			</div>
+		</div>
+	</form>
+	<!-- Modal -->
+	<div class="modal fade" id="mccBox" role="dialog">
+	    <div class="modal-dialog modal-lg">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Merchant Category Code (MCC)</h4>
+	        </div>
+	        <div class="modal-body">
+	          <div id="mccBoxData">
+	          	<div id="mccData"></div>
+	          </div>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
+	
+  	<!-- Modal -->
+  	<div class="modal fade" id="cityBox" role="dialog">
+	    <div class="modal-dialog modal-lg">
+	    	 <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Provinces list</h4>
+	        </div>
+	        <div class="modal-body">
+	          <div id="cityBoxData">
+	          	<div id="cityData"></div>
+	          </div>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	    </div>
+	</div>
+	<!-- result dialog -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="ResultModal">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Result Dialog</h4>
+				</div>				
+					<div class="modal-body" style="text-align: center;">
+						<div id="result-content"></div>
+					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+</div>

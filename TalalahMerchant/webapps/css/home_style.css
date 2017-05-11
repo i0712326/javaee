@@ -1,0 +1,387 @@
+@CHARSET "ISO-8859-1";
+
+/**
+*
+* Drop Down Menu in Home
+*
+**/
+
+.user-css {
+	padding-left: 5px;
+	color : white;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #808080;
+	font-style:bold;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/**
+*
+* customer profile style
+*
+**/
+.customer_profile{
+	border: 1px solid #CCC;
+	text-align: center;
+	width:500px;
+	height:600px;
+}
+
+
+body {
+    padding-top: 70px; 
+}
+
+.space{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+/***
+*
+* Product Detail Style
+*
+***/
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control, .item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+.detail{
+	width:330px;
+	margin:10px;
+}
+
+.descr{
+	padding: 2px;
+	margin: 10px;
+	width: 340px;
+}
+.descr p{
+	padding:10px;
+}
+.social_group{
+	margin:10px;
+}
+
+.product_option {
+	margin-top:35px;
+}
+
+.product_option a{
+	margin-left:10px;
+	margin-right:10px;
+}
+
+/***
+*
+* Search Product style
+*
+***/
+
+.product-block{
+	border:1px solid #CCC;
+	margin:5px;
+	border-radius:4px;
+}
+
+.product-line{
+	padding:5px 5px 5px 50px;
+}
+
+.product-img{
+	padding-top : 10px;
+}
+
+/**
+*
+* Product Detail CSS
+*
+***/
+
+#prdImgs{
+	width:150px;
+	height:300px;
+	border:1px solid #CC;
+}
+
+.prdImg{
+	margin:2px;
+	width:58px;
+	height:78px;
+}
+
+/***
+*
+* Zoom Product Image
+*
+***/
+
+#show {
+	width: 240px;
+	height: 338px;
+	overflow: hidden;
+	position: relative;
+	left: 0;
+}
+
+#show_mark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 100px;
+	background-color: #000;
+	opacity: .5;
+	filter: alpha(opacity = 50);
+	cursor: crosshair;
+	border: 1px solid #999;
+	display: none;
+}
+
+#zoom {
+	position: absolute;
+	left: 250px;
+	top: 0;
+	z-index: 3;
+	width: 400px;
+	height: 400px;
+	display: none;
+	overflow: hidden;
+	border: 1px solid #eee;
+}
+
+#zoom img {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+/***
+*
+* Comment Block CSS
+*
+***/
+.comment {
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #ccc;
+}
+
+.tip-up {
+  top: -25px; /* Same as body margin top + border */
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+.tip-down {
+  bottom: -25px;
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.tip-left {
+  top: 10px;
+  left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.tip-right {
+  top: 10px;
+  right: -25px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.dialogbox .body {
+  position: relative;
+  /* max-width: 300px; */
+  max-width:100%;
+  height: auto;
+  margin: 20px 10px;
+  padding: 5px;
+ /*  background-color: #DADADA; */
+  border-radius: 3px;
+  border: 2px solid #ccc;
+}
+
+.body .message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}
+
+/***
+*
+* Recommend Item List
+*
+***/
+
+#recommendItem{
+	height:1700px;
+	width:230px;
+	border : 1px solid #CCC;
+}
+
+/***
+*
+* Shopping Cart Notification Style
+*
+***/
+
+.noti_Container {
+    position:relative;
+}
+.noti_bubble {
+    position:absolute;    /* This breaks the div from the normal HTML document. */
+    top: -6px;
+    right:-6px;
+    padding:1px 2px 1px 2px;
+    background-color:red; /* you could use a background image if you'd like as well */
+    color:white;
+    font-weight:bold;
+    font-size:0.7em;
+    border-radius:30px;
+    box-shadow:1px 1px 1px gray;
+}
+
+/***
+*
+* Footer
+*
+***/
+footer {
+    margin: 50px 0;
+}
+
+.small_space{
+	margin-top:3px;
+	margin-bottom:3px;
+}
+.unread {
+	font-weight : bold;
+	font-family: Goudy Bookletter 1911, sans-serif;
+}
+
+.cartproduct{
+	border:1px solid #CCC;
+	border-radius : 2px;
+	padding-top:10px;
+	
+}
+
+.msgview {
+	text-align:left;
+	cursor:pointer;
+	border-bottom : 1px solid #CCC;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+.text-limiter {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.long-text-limiter {
+  white-space: nowrap;
+  overflow: inherit;
+  /*text-overflow: ellipsis; */
+  max-height: 500px;
+}
