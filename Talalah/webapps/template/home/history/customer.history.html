@@ -1,0 +1,181 @@
+<div>
+	<!-- history Panel -->
+	
+	<script type="text/template" id="history-panel">
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li><a href="#Home">Home</a></li>
+				<li><a href="#Home/Customer/{{id}}">Customer</a></li>
+				<li class="active">History</li>
+			</ol>
+		</div>
+		<div class="row well">
+			<div class="col-xs-6 col-sm-6 col-lg-6"> 
+				<span class="glyphicon glyphicon-book"></span> History <span class="badge">{{cartNum}}</span>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="row">
+					<div class="col-xs-3 col-sm-3 col-lg-3">
+					</div>
+					<div class="col-xs-9 col-sm-9 col-lg-9">
+						<div class="input-group">
+				  			<input type="text" class="form-control" placeholder="Product's name" id="search-text">
+				  			<div class="input-group-btn">
+								<button type="button" class="btn btn-default"  id="search">
+				  					Go!
+								</button>
+				  			</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-xs-8 col-sm-8 col-lg-8">
+				<div style="display:none;text-align:center;" id="loader0">
+					<p>
+						<img src="/Talalah/content/util/img/loader.gif"/>
+						Searching ...
+					</p>
+				</div>
+				<div id="historyDataGrid">
+					<div class="row">
+						<div class="col-lg-4 col-xs-4 col-sm-4"></div>
+						<div class="col-lg-4 col-xs-4 col-sm-4">
+							<div style="text-align:right;" id="loader1">
+								<p>
+									<img src="/Talalah/content/util/img/loader.gif"/>
+								</p>
+							</div>
+							<div class="alert alert-success"  style="text-align:center; display:none;">
+								SUCCESS !
+							</div>
+							<div class="alert alert-danger"  style="text-align:center; display:none;">
+								ERROR !
+							</div>
+						</div>
+						<div class="col-lg-4 col-xs-4 col-sm-4"></div>
+					</div>
+					<div class="row space">
+						<div class="col-lg-4 col-xs-4 col-sm-4"></div>
+						<div class="col-lg-4 col-xs-4 col-sm-4">
+							<div class="alert alert-info"  style="text-align:center; font-weight:bold; display:none;">
+								You have no purchase record !
+							</div>
+						</div>
+						<div class="col-lg-4 col-xs-4 col-sm-4"></div>
+					</div>
+				</div>
+				<div class="row" style="text-align:center;">
+					<div style="display:none;" id="loader">
+						<p>
+							<img src="/Talalah/content/util/img/loader.gif" id="loading"/>
+							Loading ... 
+						</p>
+					</div>
+					<button type="button" class="btn btn-default" id="searchmore" style="display:none;">Load More</button>
+					<button type="button" class="btn btn-default" id="loadmore" >Load More</button>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-lg-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="glyphicon glyphicon-th-list"></span> Your purchased list
+					</div>
+					<div class="panel-body">
+						<h3> Total : $ {{histPrice}} USD, ( {{histNum}} )</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</script>
+	
+	<!-- item product template -->
+	
+	<script type="text/template" id="historyItem">
+		<div class="row space" style="border:1px solid #CC;">
+			<div class="col-xs-2 col-sm-2 col-lg-2">
+				<a href="#Home/Customer/{{order.customer.id}}/History/{{order.id}}/{{product.id}}/{{id}}">
+					<img width="80" height="80" alt="{{name}}"/>
+				</a>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-lg-3">
+				<h4 class="text-limiter">
+					<a href="#Home/Customer/{{order.customer.id}}/History/{{order.id}}/{{product.id}}/{{id}}">
+						{{product.name}}
+					</a>
+				</h4>
+				<h4>
+					$ {{order.total}} USD,
+					<span class="glyphicon glyphicon-gift"></span>&nbsp;{{order.num}}
+				</h4>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<p>
+					<a href="#Home/Merchant/{{product.merchant.merchantCode.mcc}}/{{product.merchant.mcId}}">
+						{{product.merchant.name}}
+					</a>
+				</p>
+				<p>{{product.review}} {{product.size}} {{product.length}} {{product.width}} {{product.height}} {{product.color}}</p>
+				
+				<p><span class="glyphicon glyphicon-calendar"></span> &nbsp;{{order.date}}</p>
+			</div>
+			<div class="col-xs-1 col-sm-1 col-lg-1">
+				<p style="padding-top:55px;text-align:left;">
+					<a href="#">
+						<span class="glyphicon glyphicon-trash" id="delete"></span>
+					</a>
+				</p>
+			</div>
+		</div>
+	</script>
+	
+	
+	
+	<!-- travel product item -->
+	<script type="text/template" id="historyTravel">
+		<div class="row space" style="border:1px solid #CC;">
+			<div class="col-xs-2 col-sm-2 col-lg-2">
+				<a href="#Home/Customer/{{order.customer.id}}/History/{{order.id}}/{{product.id}}/{{id}}">
+					<img width="80" height="80" alt="{{product.name}}"/>
+				</a>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-lg-3">
+				<h4 class="text-limiter">
+					<a href="#Home/Customer/{{order.customer.id}}/History/{{order.id}}/{{product.id}}/{{id}}">
+						{{product.name}}
+					</a>
+				</4>
+				<h4>$ {{price}} USD, <span class="glyphicon glyphicon-gift"></span> {{order.num}}</h4>
+				
+			</div>
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<p>
+					<a href="#Home/Merchant/{{product.merchant.merchantCode.mcc}}/{{product.merchant.mcId}}">
+						{{product.merchant.name}}
+					</a>
+				</p>
+				<p>
+					<span class="glyphicon glyphicon-calendar"></span> &nbsp; {{start}}
+					&nbsp; to &nbsp;
+					<span class="glyphicon glyphicon-calendar"></span> &nbsp; {{end}}
+				</p>
+				<p> 
+					<span class="glyphicon glyphicon-user"></span> {{adult}}/{{child}}, 
+					{{days}} Day(s), <span class="glyphicon glyphicon-calendar"></span> {{order.date}}
+				</p>
+			</div>
+			<div class="col-xs-1 col-sm-1 col-lg-1">
+				<p style="padding-top:55px; text-align:left;">
+					<a href="#">
+						<span class="glyphicon glyphicon-trash" id="delete"></span>
+					</a>
+				</p>
+			</div>
+		
+		</div>
+	</script>
+	
+</div>

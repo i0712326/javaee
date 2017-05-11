@@ -1,0 +1,67 @@
+<div>
+
+	<script type="text/template" id="travelPage">
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li> <a href="#Home"> Home </a></li>
+				<li class="active">Travel</li>
+			</ol>
+		</div>
+		
+		<div class="row space">
+			<div id="product-list"></div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="travelPageByDestTemp">
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li> <a href="#Home"> Home </a></li>
+				<li> <a href="#Home/Travel">Travel</a></li>
+				<li class="active">{{id}}</li>
+			</ol>
+		</div>
+
+		<div class="row space">
+			<div class="col-xs-3 col-sm-3 col-lg-3"></div>
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group">
+      				<input type="text" class="form-control" placeholder="Search for...">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default" type="button" id="search">Go!</button>
+      				</span>
+    			</div><!-- /input-group -->
+			</div>
+			<div class="col-xs-3 col-sm-3 col-lg-3"></div>
+		</div>
+
+
+		<div class="row space">
+			<div id="product-list"></div>
+		</div>
+		
+		<div class="row space" style="text-align: center;">
+			<div id="loadProducts" style="display: none;">
+				<p>
+					<img src="/Talalah/content/util/img/loader.gif">
+					Loading ...
+				</p>
+			</div>
+			<span class="btn btn-default" id="moreProducts">Load More</span>
+		</div>
+	</script>
+	
+	<script type="text/template" id="itemPage">
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li> <a href="#Home"> Home </a></li>
+				<li class="active">Product</li>
+			</ol>
+		</div>
+		
+		<div class="row space">
+			<div id="product-list"></div>
+		</div>
+	</script>
+	
+</div>

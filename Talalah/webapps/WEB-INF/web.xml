@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Talalah</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- web service url context -->
+  <context-param>
+  	<description>root web service URL</description>
+  	<param-name>com.talalah.web.service.engine</param-name>
+  	<param-value>http://localhost:8080/ServiceEngine/service</param-value>
+  </context-param>
+  
+  <!-- web image file upload -->
+  <context-param>
+  	<description>root content management service product relate image</description>
+  	<param-name>com.talalah.web.content.customer.img</param-name>
+  	<param-value>http://localhost:8080/TalalahContents/fileUploadService/userImg</param-value>
+  </context-param>
+  <!-- spring mvc servlet -->
+  
+  <servlet>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+    <multipart-config>
+	  <location>/tmp</location>
+	  <max-file-size>10000000</max-file-size>
+	  <max-request-size>10000000</max-request-size>
+	  <file-size-threshold>10000</file-size-threshold>
+	 </multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- spring security configuration -->
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/spring-security.xml</param-value>
+  </context-param>
+  
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+</web-app>

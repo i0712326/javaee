@@ -1,0 +1,285 @@
+<div>
+	<script type="text/template" id="cart-panel">
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li><a href="#Home">Home</a></li>
+				<li><a href="#Home/Customer/{{id}}">Customer</a></li>
+				<li class="active">Cart</li>
+			</ol>
+		</div>
+		
+		<div class="row well">
+			<div class="col-lg-12 col-sm-12 col-xs-12">
+				<div class="col-lg-6 col-sm-6 col-xs-6">
+					<span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">{{cart.total}}</span>
+				</div>
+				<div class="col-lg-6 col-sm-6 col-xs-6">
+					<img src="/Talalah/content/util/img/loader.gif" id="loader" style="display:none;"/>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Item's name" id="search-text">
+						<div class="input-group-btn">
+							<button type="button" class="btn btn-default" id="search">Go!</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row space">
+			<div class="col-lg-12 col-xs-12 col-sm-12">
+				<div class="col-lg-8 col-sm-8 col-xs-8">
+					<div class="row space">
+						<div class="col-lg-3 col-sm-3 col-xs-3"></div>
+						<div class="col-lg-6 col-sm-6 col-xs-6">
+							<div class="alert alert-info" style="text-align:center; display:none;" id="empty-info">
+								No item in your cart.
+							</div>
+							<div style="text-align:center;" id="loader00">
+								<p>
+									<img src="/Talalah/content/util/img/loader.gif"> Loading ...
+								</p>
+							</div>	
+						</div>
+						<div class="col-lg-3 col-sm-3 col-xs-3"></div>
+					</div>
+					
+					<div class="row space" id="cartProductDataGrid"></div>
+					
+					<div class="row space">
+						<div class="col-lg-12 col-sm-12 col-xs-12">
+							<div class="col-lg-6 col-sm-6 col-xs-6">
+								<button class="btn btn-default" id="backward">
+									<span class="glyphicon glyphicon-backward" ></span>
+								</button>
+							</div>
+							<div class="col-lg-6 col-sm-6 col-xs-6" style="text-align:right;">
+								<button class="btn btn-default" id="forward">
+									<span class="glyphicon glyphicon-forward"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-sm-4 col-xs-4">
+					<div class="alert alert-success" style="display:none;text-align:center;">
+							SUCCESS !
+					</div>
+					<div class="alert alert-danger" style="display:none;text-align:center;">
+							ERROR !
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<p style="font-size:16px; font-weight:bold;">
+								<span class="glyphicon glyphicon-map-marker"></span>
+								&nbsp; Address
+							</p>
+						</div>
+						<div class="panel-body">
+							<div id="address"></div>
+							<p style="text-align: right;">
+								<a href="#" id="editAddr">Edit</a>
+								<img src="/Talalah/content/util/img/loader.gif" id="loader1" style="display:none;"/>
+								<button class="btn btn-default" id="ok" style="display:none;">OK</button>
+							</p>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<p style="font-size:16px; font-weight:bold;">
+								<span class="glyphicon glyphicon-tags"></span> Cart Total
+							</p>
+						</div>
+						<div class="panel-body">
+							<p style="font-size:18px; font-weight:bold;"> 
+								<span id="cart-total"> {{cart.total}} </span> Items, 
+								$ <span id="cart-sum"> {{cart.sum}} </span> USD
+							</p>
+							<p style="text-align: right;">
+								<button class="btn btn-primary btn-sm">
+									<span class="glyphicon glyphicon-check"></span>
+									checkout
+								</button>
+							</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!-- modal dialog pop up once check out is completed. -->
+		
+		<div class="modal fade" tabindex="-1" role="dialog" id="MsgDialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		        	<span aria-hidden="true">&times;</span>
+		        </button>
+		        <h4 class="modal-title">
+		        	<span class="glyphicon glyphicon-bell"></span>Message
+		        </h4>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="alert alert-success" role="alert" style="display:none;text-align:center;">
+		      		<h4><strong>Your Order has been pressed successfully !!!</strong></h4>
+				</div>
+				<div class="alert alert-danger" role="alert" style="display:none;text-align:center;">
+	  				<h4><strong>Error occured while processing your request.!!!</strong></h4>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+	</script>
+	
+	<script type="text/template" id="cartItem">
+		<div class="col-xs-2 col-sm-2 col-lg-2">
+			<a href="#Home/Customer/{{cart.customer.id}}/Cart/{{cart.id}}/{{product.id}}/{{id}}">
+				<img width="80" height="80" alt="{{product.name}}"/>
+			</a>
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<p class="text-limiter"><a href="#Home/Customer/{{cart.customer.id}}/Cart/{{cart.id}}/{{product.id}}/{{id}}">{{product.name}}</a></p>
+			<h4>
+				$ {{price}} USD,
+				<span class="glyphicon glyphicon-gift"></span>&nbsp;{{qty}}
+			</h4>
+		</div>
+		<div class="col-xs-4 col-sm-4 col-lg-4">
+			<p>
+				<a href="#Home/Merchant/{{product.merchant.merchantCode.mcc}}/{{product.merchant.mcId}}">
+					{{product.merchant.name}}
+				</a>
+			</p>
+			<p>{{product.review}} {{product.size}} {{product.length}} {{product.width}} {{product.height}} {{product.color}}</p>
+			<p><span class="glyphicon glyphicon-calendar"></span> &nbsp;{{date}}</p>
+		</div>
+		<div class="col-xs-1 col-sm-1 col-lg-1">
+			<p style="padding-top:10px; text-align:right;">
+				<a href="#"  title="check out" id="checkout">
+					<span class="glyphicon glyphicon-check"></span>
+				</a>
+			</p>
+			<p style="padding-top:10px; text-align:right;">
+				<a href="#" title="delete" id="delete">
+					<span class="glyphicon glyphicon-trash"></span>
+				</span>
+			</p>
+		</div>
+		
+	</script>
+	
+	<!-- travel product item -->
+	<script type="text/template" id="cartTravel">
+		<div class="col-xs-2 col-sm-2 col-lg-2">
+			<a href="#Home/Customer/{{cart.customer.id}}/Cart/{{cart.id}}/{{product.id}}/{{id}}">
+				<img width="80" height="80" alt="{{product.name}}"/>
+			</a>
+		</div>
+		<div class="col-xs-3 col-sm-3 col-lg-3">
+			<p><a href="#Home/Customer/{{cart.customer.id}}/Cart/{{cart.id}}/{{product.id}}/{{id}}">{{product.name}}</a></p>
+			<h4>$ {{price}} USD </p>
+			<p>
+				<span class="glyphicon glyphicon-user"></span> {{adult}}/{{child}}
+			</p>
+		</div>
+		<div class="col-xs-4 col-sm-4 col-lg-4">
+			<p>
+				<a href="#Home/Merchant/{{product.merchant.merchantCode.mcc}}/{{product.merchant.mcId}}">
+					{{product.merchant.name}}
+				</a>
+			</p>
+			<p>
+				<span class="glyphicon glyphicon-calendar"></span> &nbsp; {{start}}
+				<span class="glyphicon glyphicon-calendar"></span> &nbsp; {{end}}
+			</p>
+			<p> {{days}} Days</p>
+		</div>
+		<div class="col-xs-1 col-sm-1 col-lg-1">
+			<p style="padding-top:5px; text-align:right;">
+				<a href="#"  title="check out" id="checkout">
+					<span class="glyphicon glyphicon-check"></span>
+				</a>
+			</p>
+			<p style="padding-top:5px; text-align:right;">
+				<a href="#"  title="delete" id="delete">
+					<span class="glyphicon glyphicon-trash"></span>
+				</a>
+			</p>
+		</div>
+	</script>
+	
+	<script type="text/template" id="addressPanel1">
+		<div id="address">
+			{{address.country}}, {{address.district.name}},{{address.postal}},
+			{{address.address1}},{{address.address2}},{{address.address2}},{{address.tel}},
+			{{address.fax}},{{address.email}}
+		</div>
+	</script>
+	
+	<script type="text/template" id="addressPanel2">
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon" title="Country"><span class="glyphicon glyphicon-flag"></span></span>
+				  <input type="text" value="LAOS" class="form-control" placeholder="Country" id="country">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon"  title="City"><span class="glyphicon glyphicon-tower"></span></span>
+					  <input type="text"class="form-control" placeholder="City" id="pvId" value="{{address.district.name}}">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon"  title="post code"><span class="glyphicon glyphicon-barcode"></span></span>
+					  <input type="text" class="form-control" placeholder="Postal Code" id="postal" value="{{address.postal}}">
+				</div>
+			</div>
+				
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+					  <span class="input-group-addon"  title="telephone">
+						<span class="glyphicon glyphicon-phone-alt"></span>
+					  </span>
+					  <input type="text" class="form-control" placeholder="Telephone" id="tel" name="tel" value="{{address.tel}}">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon">
+						<span class="glyphicon glyphicon-print"  title="fax"></span>
+					  </span>
+					  <input type="text" class="form-control" placeholder="Fax" id="fax" name="fax" value="{{address.fax}}">
+				</div>
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<div class="input-group space">
+				  <span class="input-group-addon">
+					<span class="glyphicon glyphicon-map-marker"  title="Street/Road, Address"></span>
+				  </span>
+				  <input type="text" class="form-control" placeholder="Street/Road, Address" id="addr1" name="addr1" value="{{address.address1}}">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" title="Apartment, build, block, floor"></span></span>
+					  <input type="text" class="form-control" placeholder="Apartment, build, block, floor" id="addr2" value="{{address.address2}}">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" title="Other Address"></span></span>
+					  <input type="text" class="form-control" placeholder="Other Address" id="addr3" value="{{address.address3}}">
+				</div>
+			</div>
+		</div>
+		
+	</script>
+
+</div>

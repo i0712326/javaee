@@ -1,0 +1,303 @@
+<div>
+	<!-- start main panel -->
+	
+	<div type="text/template" id="main-panel">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#Home">Home</a></li>
+				<li  class="active">Customer</li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-sm-4 col-xs-4 col-lg-4"></div>
+			<div class="col-sm-4 col-xs-4 col-lg-4">
+				<div class="row space" style="text-align: center;">
+					<img width="150" height="200" id="profileImg"/>
+					<input id="lefile" type="file" style="display:none">
+				</div>
+				<div class="row" style="text-align: center;">
+					<button type="button" class="btn btn-default btn-sm" id="upload">
+						<span class="glyphicon glyphicon-plus-sign"></span>upload
+					</button>
+					<button type="button" class="btn btn-default btn-sm" id="ok" style="display:none">
+						<span class="glyphicon glyphicon-ok"></span>OK
+					</button>
+					<img src="/Talalah/content/util/img/loader.gif" id="loading" style="display:none;"/>
+					<div class="row space">
+						<div class="col-lg-3 col-sm-3 col-xs-3"></div>
+						<div class="col-lg-6 col-sm-6 col-xs-6">
+							<div class="alert alert-success" style="display:none;" id="success"> <span class="glyphicon glyphicon-ok"></span> SUCCESS !</div>
+							<div class="alert alert-danger" style="display:none;" id="error"> <span class="glyphicon glyphicon-warning-sign"></span> ERROR !</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-xs-4 col-lg-4"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 col-xs-2 col-lg-2">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">
+				    	<span class="glyphicon glyphicon-menu-hamburger"></span>
+				    	Menu
+				    </h3>
+				  </div>
+				  <div class="panel-body">
+				  	<div class="row">
+				  		<div class="col-xs-8 col-sm-8 col-lg-8">
+				  			<a href="#Home/Customer/{{id}}/Inbox"><span class="glyphicon glyphicon-inbox"></span>&nbsp;Inbox </a>
+				  		</div>
+				  		<div class="col-xs-4 col-sm-4 col-lg-4">
+				  			<span class="badge">{{uInboxNum}}</span>
+				  		</div>
+				  		<hr/>
+				  	</div>
+				  	<div class="row">
+				  		<div class="col-xs-12 col-sm-12 col-lg-12">
+				  			<a href="#/Home/Customer/{{id}}/Sent"><span class="glyphicon glyphicon-send"></span>&nbsp;Sent </a>
+				  		</div>
+				  		<hr/>
+				  	</div>
+				  	<div class="row">
+				  		<div class="col-xs-8 col-sm-8 col-lg-8">
+				  			<a href="#Home/Customer/{{id}}/Cart/{{cart.id}}"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Cart </a>
+				  			
+				  		</div>
+				  		<div class="col-xs-4 col-sm-4 col-lg-4">
+				  			<span class="badge">{{cartNum}}</span>
+				  		</div>
+				  		<hr/>
+				  	</div>
+				  	<div class="row">
+				  		<div class="col-xs-12 col-sm-12 col-lg-12">
+				  			<a href="#Home/Customer/{{id}}/History"><span class="glyphicon glyphicon-book"></span>&nbsp;History </a>
+				  		</div>
+				  		<hr/>
+				  	</div>
+				  </div>
+				</div>
+			</div>
+			<div class="col-sm-3 col-xs-3 col-lg-3">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">
+				    	<span class="glyphicon glyphicon-tag"></span>
+				    	Profile
+				    </h3>
+				  </div>
+				  <div class="panel-body">
+				  		<div class="row">
+				  			<div class="col-sm-12 col-xs-12 col-lg-12">
+								<div class="alert alert-success" style="display:none;" id="success1"> <span class="glyphicon glyphicon-ok"></span> SUCCESS !</div>
+								<div class="alert alert-danger" style="display:none;" id="error1"> <span class="glyphicon glyphicon-warning-sign"></span> ERROR !</div>
+							</div>
+						</div>
+				    	<div class="input-group space">
+						  <span class="input-group-addon" id="basic-addon2">
+						  	<span class="glyphicon glyphicon-envelope"></span>
+						  </span>
+						  <input type="text" class="form-control" value="{{email}}" disabled id="email" title="user's id">
+						</div>
+						<div class="input-group space">
+						  <span class="input-group-addon" id="basic-addon2">
+						  	<span class="glyphicon glyphicon-user"></span>
+						  </span>
+						  <input type="text" class="form-control" value="{{usrname}} {{surname}}" disabled id="name" title="name and surname">
+						</div>
+						<div class="row" style="text-align: right">
+							<div class="col-sm-12 col-xs-12 col-lg-12">
+								<img src="/Talalah/content/util/img/loader.gif" id="loading1" style="display:none;"/>
+								<button type="button" class="btn btn-default btn-sm" id="ok1" style="display:none">
+									OK
+								</button>
+								<a href="#" id="edit_pro">Edit</a>
+							</div>
+						</div>
+				  </div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-xs-4 col-lg-4">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">
+				    	<span class="glyphicon glyphicon-map-marker"></span>
+				    	Address
+				    </h3>
+				  </div>
+				  <div class="panel-body">
+				  	<div class="row">
+				  		<div class="col-lg-12 col-sm-12 col-xs-12">
+					    	<div class="alert alert-success" style="display:none;" id="success2"> <span class="glyphicon glyphicon-ok"></span> SUCCESS !</div>
+							<div class="alert alert-danger" style="display:none;" id="error2"> <span class="glyphicon glyphicon-warning-sign"></span> ERROR !</div>
+						</div>
+				  	</div>
+				    <div class="row"> 
+				    	<div class="col-lg-12 col-sm-12 col-xs-12" id="addr-content">
+					    	{{address.country}}, {{address.district.name}}, {{address.postal}},
+					    	{{address.fax}}, {{address.tel}},{{address.address1}},
+					    	{{address.address2}},{{address.address3}}
+				    	</div>
+				    </div>
+				    <div class="row" style="text-align: right">
+				    	<div class="col-lg-12 col-sm-12 col-xs-12">
+							<img src="/Talalah/content/util/img/loader.gif" id="loading2" style="display: none;"/>
+					    	<button type="button" class="btn btn-default btn-sm" id="ok2" style="display: none;">OK</button>
+					    	<a href="#" id="edit_addr">Edit</a>
+				    	</div>
+				    </div>
+				  </div>
+				</div>
+			</div>
+			<div class="col-sm-3 col-xs-3 col-lg-3">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">
+				    	<span class="glyphicon glyphicon-paperclip"></span>
+				    	Evaluation
+				    </h3>
+				  </div>
+				  <div class="panel-body">
+				    	<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 5 &nbsp;{{rate.percent5}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{rate.percent5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{rate.percent5}}%;">
+						    		</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 4 &nbsp;{{rate.percent4}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{rate.percent4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{rate.percent4}}%;">
+						  			</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 3&nbsp;{{rate.percent3}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{rate.percent3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{rate.percent3}}%;">
+						    		</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 2&nbsp;{{rate.percent2}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{rate.percent2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{rate.percent2}}%;">
+						    		</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 1&nbsp;{{rate.percent1}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{rate.percent1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{rate.percent1}}%;">
+						    		</div>
+								</div>
+							</div>
+						</div>
+				  </div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row well">
+			<div class="col-xs-12 col-lg-12 col-sm-12">
+				<h3><span class="glyphicon glyphicon-thumbs-up"></span> Our Recommand Products</h3>
+			</div>
+		</div>
+		
+		<div class="row space">
+			<div id="cart-products"></div>
+		</div>
+		<div class="row space">
+			<div style="text-align:center;">
+				<p id="loader" style="display:none;">
+					<img src="/Talalah/content/util/img/loader.gif">
+					Loading ...
+				</p>
+				<button type="button" class="btn btn-default" id="loadmore">LoadMore</button>
+			</div>
+		</div>
+	</script>
+
+	<!-- end main panel -->
+	
+	<!-- address box -->
+	<script type="text/template" id="address-panel">
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon" title="Country"><span class="glyphicon glyphicon-flag"></span></span>
+				  <input type="text" value="{{address.country}}" class="form-control" placeholder="Country" id="country">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon"  title="City"><span class="glyphicon glyphicon-tower"></span></span>
+					  <input type="text"class="form-control" placeholder="City" id="pvId" value="{{address.district.name}}">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon"  title="post code"><span class="glyphicon glyphicon-barcode"></span></span>
+					  <input type="text" class="form-control" placeholder="Postal Code" id="postal" value="{{address.postal}}">
+				</div>
+			</div>
+				
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+					  <span class="input-group-addon"  title="telephone">
+						<span class="glyphicon glyphicon-phone-alt"></span>
+					  </span>
+					  <input type="text" class="form-control" placeholder="Telephone" id="tel" name="tel" value="{{address.tel}}">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon">
+						<span class="glyphicon glyphicon-print"  title="fax"></span>
+					  </span>
+					  <input type="text" class="form-control" placeholder="Fax" id="fax" name="fax" value="{{address.fax}}">
+				</div>
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<div class="input-group space">
+				  <span class="input-group-addon">
+					<span class="glyphicon glyphicon-map-marker"  title="Street/Road, Address"></span>
+				  </span>
+				  <input type="text" class="form-control" placeholder="Street/Road, Address" id="addr1" name="addr1" value="{{address.address1}}">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" title="Apartment, build, block, floor"></span></span>
+					  <input type="text" class="form-control" placeholder="Apartment, build, block, floor" id="addr2" value="{{address.address2}}">
+				</div>
+				
+				<div class="input-group space">
+					  <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" title="Other Address"></span></span>
+					  <input type="text" class="form-control" placeholder="Other Address" id="addr3" value="{{address.address3}}">
+				</div>
+			</div>
+		</div>
+		
+	</script>
+	<!-- addreess box end -->
+</div>

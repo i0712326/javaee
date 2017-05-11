@@ -1,0 +1,255 @@
+<div>
+	<!-- bread crumb -->
+	<ol class="breadcrumb">
+	  <li><a href="#Home">Home</a></li>
+	  <li><a href="#Merchant">Merchant</a></li>
+	  <li class="active">{{mcId}}</li>
+	</ol>
+	<!-- merchant Information -->
+	<div class="row well">
+	   <form action="#" method="post" enctype="multipart/form-data" id="merchant-update-form">
+		<div class="col-xs-4 col-sm-4 col-lg-4">
+			<div class="thumbnail">
+				<img src="" alt="merchant logo" id="logoImg" width="252" height="200"/>
+				<input type="file" id="lefile" style="display:none"/>
+				<div class="input-group space">
+				  <input type="text" id="photoCover" class="form-control" placeholder="Select Image File...">
+				  <span class="input-group-addon">
+				  	<a href="#"  id="merchantImg">
+				  		<span class="glyphicon glyphicon-file"></span>
+				  	</a>
+				  </span>
+				</div>
+				<div class="caption">
+					<div class="input-group space">
+						<span class="input-group-addon">Merchant's ID</span> <input
+							type="text" class="form-control" placeholder="Merchant's ID" id="id"
+							aria-describedby="basic-addon1" value="{{mcId}}" disabled> <span
+							class="input-group-addon">({{status}})</span>
+					</div>
+					<div class="input-group space">
+						<span class="input-group-addon">name</span> <input type="text"
+							class="form-control" placeholder="Merchant's name" id="name"
+							aria-describedby="basic-addon1" value="{{name}}">
+					</div>
+					<div class="input-group space">
+						<span class="input-group-addon" title="{{merchantCode.note}}">Merchant
+							Category Code</span> <input type="text" class="form-control" id="mcc" name="mcc"
+							placeholder="Merchant's status" aria-describedby="basic-addon1"
+							value="{{merchantCode.mcc}}" title="{{merchantCode.note}}" >
+						<span class="input-group-addon"><a href="#" id="mccWindow"><span class="glyphicon glyphicon-new-window" ></span></a></span>
+					</div>
+					<div class="input-group space">
+						<span class="input-group-addon">URL</span> <input type="text"
+							class="form-control" placeholder="Merchant's url" id="url"
+							aria-describedby="basic-addon1" value="{{url}}" >
+						<span class="input-group-addon"><a href="http://{{url}}" target="blank"><span class="glyphicon glyphicon-new-window" ></span></a></span>
+					</div>
+					<div class="input-group space"  style="padding-left:40%;">
+						<button type="submit" class="btn btn-default" id="update">Update</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- address -->
+		<div class="col-xs-4 col-sm-4 col-lg-4">
+			<div class="input-group space">
+				<input type="hidden" value="{{address.addrId}}" id="addrId"/>
+				<span class="input-group-addon" id="basic-addon1">country</span> <input
+					type="text" class="form-control" placeholder="Merchant's country" id="country"
+					aria-describedby="basic-addon1" value="{{address.country}}" disabled>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">city</span> <input
+					type="text" class="form-control" placeholder="Merchant's city" id="pvId" name="pvId"
+					aria-describedby="basic-addon1" value="{{address.district.id}}" title="{{address.district.name}}">
+				<span class="input-group-addon"><a href="#" id="cityWindow"><span class="glyphicon glyphicon-new-window" ></span></a></span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">postal</span> <input
+					type="text" class="form-control" placeholder="Merchant's postal" id="postal"
+					aria-describedby="basic-addon1" value="{{address.postal}}">
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">address1</span> <input
+					type="text" class="form-control" placeholder="Merchant's address1" id="addr1"
+					aria-describedby="basic-addon1" value="{{address.address1}}">
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">address2</span> <input
+					type="text" class="form-control" placeholder="Merchant's address2" id="addr2"
+					aria-describedby="basic-addon1" value="{{address.address2}}">
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">address3</span> <input
+					type="text" class="form-control" placeholder="Merchant's address3" id="addr3"
+					aria-describedby="basic-addon1" value="{{address.address3}}">
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">telephone</span> <input
+					type="text" class="form-control" placeholder="Merchant's telephone" id="tel"
+					aria-describedby="basic-addon1" value="{{address.tel}}">
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">email</span> <input
+					type="text" class="form-control" placeholder="Merchant's email" id="email"
+					aria-describedby="basic-addon1" value="{{address.email}}" disabled>
+				<span class="input-group-addon" id="basic-addon1">
+					<a href="#" id="sendEmail"><span class="glyphicon glyphicon-envelope"></span></a>
+				</span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">fax</span> <input
+					type="text" class="form-control" placeholder="Merchant's fax" id="fax"
+					aria-describedby="basic-addon1" value="{{address.fax}}">
+			</div>
+		</div>
+		<!-- management data -->
+		<div class="col-xs-4 col-sm-4 col-lg-4">
+	
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">total
+					products</span> <input type="text" class="form-control" id="totalPrd"
+					placeholder="0" aria-describedby="basic-addon1"
+					value="{{totalPrd}}" >
+					<span class="input-group-addon"><a href="#" id="totalPrdLink"><span class="glyphicon glyphicon-link" ></span></a></span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">sold Product</span>
+				<input type="text" class="form-control" placeholder="0" id="soldPrd"
+					aria-describedby="basic-addon1" value="{{salePrd}}">
+				<span class="input-group-addon"><a href="#" id="soldPrdLink"><span class="glyphicon glyphicon-link" ></span></a></span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">In Stock
+					Product</span> <input type="text" class="form-control" id="inStock"
+					placeholder="0" aria-describedby="basic-addon1"
+					value="{{stockPrd}}">
+				<span class="input-group-addon"><a href="#" id="inStockLink"><span class="glyphicon glyphicon-link" ></span></a></span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">total Sale
+					</span> <input type="text" class="form-control" id="totalSale"
+					placeholder="0.00" aria-describedby="basic-addon1"
+					value="{{totalSale}}">
+				<span class="input-group-addon"><a href="#" id="totalSaleLink"><span class="glyphicon glyphicon-link" ></span></a></span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">purchase
+					Price</span> <input type="text" class="form-control" id="purcPrice"
+					placeholder="0.00" aria-describedby="basic-addon1"
+					value="{{pchPrice}}">
+				<span class="input-group-addon"><a href="#" id="purcPriceLink"><span class="glyphicon glyphicon-link" ></span></a></span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">Profit</span> <input
+					type="text" class="form-control" placeholder="0.00" id="profit"
+					aria-describedby="basic-addon1" value="{{profit}}" >
+				<span class="input-group-addon"><a href="#" id="profitLink"><span class="glyphicon glyphicon-link" ></span></a></span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">Incoming
+					Order</span> <input type="text" class="form-control" id="incOrd"
+					placeholder="0" aria-describedby="basic-addon1"
+					value="{{incOrder}}">
+				<span class="input-group-addon"><a href="#" id="incOrdLink"><span class="glyphicon glyphicon-link" ></span></a></span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">Processed
+					Order</span> <input type="text" class="form-control" id="prcedOdr"
+					placeholder="0" aria-describedby="basic-addon1"
+					value="{{procOrder}}">
+				<span class="input-group-addon"><a href="#" id="prcedOdrLink"><span class="glyphicon glyphicon-link" ></span></a></span>
+			</div>
+			<div class="input-group space">
+				<span class="input-group-addon" id="basic-addon1">Processing
+					Order</span> <input type="text" class="form-control" id="procIncOrd"
+					placeholder="0" aria-describedby="basic-addon1"
+					value="{{inPrcOrder}}">
+				<span class="input-group-addon"><a href="#" id="procIncOrdLink"><span class="glyphicon glyphicon-link" ></span></a></span>
+			</div>
+		</div>
+		</form>
+   </div>
+	
+	<!-- product data -->
+	<div class="row well">
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<p style="font-size: 27px; font-family: arial;"><strong>Products</strong></p>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Product's name" aria-describedby="basic-addon1" id="search-val">
+					<span class="btn btn-defaul input-group-addon" id="search"><span class="glyphicon glyphicon-search"></span></span>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div id="products-list"></div>
+		</div>
+	</div>
+	<div>
+		<!-- Modal -->
+   		<div class="modal fade" tabindex="-1" role="dialog" id="ResultModal">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">Alert Dialog</h4>
+					</div>				
+						<div class="modal-body" style="text-align: center;">
+							<div id="result-content"></div>
+						</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			<!-- /.modal-content -->
+			</div>
+		<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+   	
+		<!-- Modal -->
+	    <div class="modal fade" id="mccBox" role="dialog">
+	       	<div class="modal-dialog modal-lg">
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Merchant Category Code (MCC)</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div id="mccBoxData"></div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+	   	 	</div>
+	  	</div>
+	
+	  	<!-- Modal -->
+	  	<div class="modal fade" id="cityBox" role="dialog">
+		    <div class="modal-dialog modal-lg">
+		    	 <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Provinces list</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div id="cityBoxData"></div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		</div>	
+	</div>
+</div>

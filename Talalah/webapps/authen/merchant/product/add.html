@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="/EmarketWeb/css/bootstrap.min.css" rel="stylesheet"></link>
+<style type="text/css">
+.prdRegisFrame{
+	border:1px solid #CCC;
+	border-radius:3px;
+	width:60%;
+	height:100%;
+	margin-left:300px;
+	margin-top:50px;
+	padding:20px;
+}
+
+.titleBox {
+	width: 400px;
+	margin: 10px;
+}
+
+.titleBox h2 {
+	font-weight: bold;
+	text-decoration: none;
+	font-family: Arial, serif;
+	font-size: 40px;
+	color: #3BB9FF;
+	margin: 1px;
+}
+
+.titleBox hr {
+	color: #82CAFF;
+	height: 5px;
+	background-color: #82CAFF;
+	border: solid 1px #82CAFF;
+}
+
+/* merchant information */
+.merchantDetail {
+	width: 500px;
+	margin: 15px;
+	padding-top: 0px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	border-radius: 2px;
+}
+
+.merchantDetail p {
+	font-family: Arial, Georgia, serif;
+	font-size: 20px;
+	font-weight: bold;
+	text-decoration: underline;
+	color: gray;
+}
+
+.merchanDetail table, th, td {
+	border: 5px solid white;
+}
+
+.merchantDetail th {
+	text-align: right;
+	font-family: Helvetica;
+	color: gray;
+}
+
+.merchantDetail td {
+	text-decoration: underline;
+	font-weight: bold;
+	font-size: 17px;
+	padding-left: 10px;
+	font-family: arial;
+}
+
+/* product detail */
+
+.productDetail {
+	margin-left: 20px;
+	width: 900px;
+}
+
+.productDetail p {
+	font-family: Arial, Georgia, serif;
+	font-size: 20px;
+	color: #CCC;
+	font-weight: bold; text-decoration : underline;
+	color: gray;
+	text-decoration: underline
+}
+
+.productDetail th {
+	text-align: right;
+	font-family: Helvetica;
+	color: gray;
+}
+
+.textbox {
+	font-family: Arial, Serif;
+	border: 6px solid #F7F9FA;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95a2a7
+		inset;
+	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px
+		#95A2A7 inset;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95A2A7 inset;
+	height: 40px;
+	width: 275px;
+	display: block;
+	font-weight: normal;
+}
+
+.textfield {
+	border: 6px solid #F7F9FA;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95a2a7
+		inset;
+	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px
+		#95A2A7 inset;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95A2A7 inset;
+	display: block;
+}
+
+/* image css */
+
+.prdImgs{
+	margin-bottom:10px;
+}
+
+.prdImg {
+	width: 100px;
+	float: left;
+	margin: 8px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.submitButt {
+  -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius: 3px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  background: #3498db;
+  padding: 8px 18px 8px 18px;
+  text-decoration: none;
+}
+
+.submitButt:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.submitCss{
+	text-align: center;
+}
+</style>
+<title>Product Register</title>
+</head>
+<body>
+<div class="row">
+	<div class="col-md-12 col-xs-12 col-xs-12 col-lg-12 prdRegisFrame">
+		<div class="titleBox">
+			<h2>Product Registration</h2>
+			<hr />
+		</div>
+		<div class="merchantDetail">
+			<p>Merchant Information</p>
+			<table>
+				<tr>
+					<th>ID :</th>
+					<td><input type="text" class="textbox" disabled="disabled"
+						value="123456789012" /></td>
+				</tr>
+				<tr>
+					<th>Name :</th>
+					<td><input type="text" class="textbox" disabled="disabled"
+						value="T-Shirt Store" /></td>
+				</tr>
+				<tr>
+					<th>Category :</th>
+					<td><input type="text" class="textbox" value="5619"
+						disabled="disabled" /></td>
+				</tr>
+			</table>
+		</div>
+		<div class="productDetail">
+			<p>Product Information</p>
+			<table>
+				<tr>
+					<th>ID :</th>
+					<td><input type="text" name="prdId" class="textbox" /></td>
+					<th>Name :</th>
+					<td><input type="text" name="prdname" class="textbox" /></td>
+				</tr>
+				<tr>
+					<th>Price :</th>
+					<td><input type="text" name="prdprice" class="textbox" /></td>
+					<th>Stock :</th>
+					<td><input type="text" name="prdstock" class="textbox" /></td>
+				</tr>
+			</table>
+			<p>Detail</p>
+			<textarea rows="8" cols="90" name="descp" class="textfield"></textarea>
+				<table>
+					<tr>
+						<td>
+							<div class="prdImgs">
+								<p>Image</p>
+								<div class="prdImg">
+									<p>
+										<img id="preview0" src="http://placehold.it/100x100"
+											alt="your image" width="90" height="100" />
+									</p>
+									<span class="btn btn-default btn-file"> Browse <input
+										type="file" />
+									</span>
+								</div>
+
+								<div class="prdImg">
+									<p>
+										<img id="preview1" src="http://placehold.it/100x100"
+											alt="your image" width="90" height="100" />
+									</p>
+									<span class="btn btn-default btn-file"> Browse <input
+										type="file" /></span>
+								</div>
+
+								<div class="prdImg">
+									<p>
+										<img id="preview2" src="http://placehold.it/100x100"
+											alt="your image" width="90" height="100" />
+									</p>
+									<span class="btn btn-default btn-file"> Browse <input
+										type="file" /></span>
+								</div>
+
+								<div class="prdImg">
+									<p>
+										<img id="preview3" src="http://placehold.it/100x100"
+											alt="your image" width="90" height="100" />
+									</p>
+									<span class="btn btn-default btn-file"> Browse <input
+										type="file" /></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><button class="btn btn-default" id="addImg">Add More</button></td>
+					</tr>
+				</table>
+
+			</div>
+		<div class="submitCss">
+					<input class="submitButt btn-default" type="submit" value="Submit" />
+				</div>
+	</div>
+	
+	</div>
+	<script type="text/javascript" src="/EmarketWeb/js/lib/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript">
+		var count = 4;
+		$('#addImg').on('click',function(e){
+			var el = '<div><div class="prdImg"><p><img id="preview'+count+'" src="http://placehold.it/100x100" alt="your image" width="90" height="100"/></p><span class="btn btn-default btn-file"> Browse <input type="file" /></span></div></div>';
+			$('.prdImgs').append($(el).html());
+		});
+	</script>
+</body>
+</html>

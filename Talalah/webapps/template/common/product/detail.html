@@ -1,0 +1,122 @@
+<div>
+	<!-- Bread Crumb Menu -->
+	<ol class="breadcrumb">
+		<li>
+			<a href="#">{{merchant.merchantCode.note}}</a>
+		</li>
+		<li>
+			<a href="#">{{merchant.name}}</a>
+		</li>
+		<li>
+			{{name}}
+		</li>
+	</ol>
+	<div class="row">
+		   <!--Related Products Bar -->
+			<!-- Main Container -->
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-lg-2" id="prdImgs"></div>
+					<div class="col-xs-4 col-sm-4 col-lg-4">
+						<div id="show"> <img src="content/{{merchant.merchantCode.mcc}}/{{merchant.mcId}}/{{id}}/{{img}}" alt="Product {{name}}" id="show_pic" width="240" height="338" /> </div>
+ 						<div id="zoom"> <img src="content/{{merchant.merchantCode.mcc}}/{{merchant.mcId}}/{{id}}/zoom{{img}}"/></div>
+					</div>
+					<!-- product detail -->
+					<div class="panel panel-default col-xs-6 col-sm-6 col-lg-6 ">
+						<div class="panel-body">
+							<div class="product_gen">
+								<h3>{{name}}</h3>
+								<h4>Seller : {{merchant.name}} - ( {{id}} )</h4>
+								<hr/>
+							</div>
+							<div class="product_parti">
+								<div id="detail_content"></div>
+							</div>
+							<div class="cart_pay">
+								<hr/>
+								<h3>Price : <strong> {{price}} USD</strong></h3>
+								<p>
+									<button type="button" class="btn btn-default" id="addCart">Add to Cart</button>
+									<button type="button" class="btn btn-default" id="buyIt">Buy it Now</button>
+								</p>
+							</div>
+							<div class="social_share">
+								<p class="social_opt">
+									<a title="follow me on facebook" href="#">
+										<img src="css/img/social/facebook30x30.png"/>
+									</a>
+									<a title="follow me on instagram" href="#">
+										<img src="css/img/social/instagram30x30.png"/>
+									</a>
+									<a title="follow me on google plus" href="#">
+										<img src="css/img/social/twiiter30x30.png"/>
+									</a>
+								</p>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div>
+					<ul class="nav nav-tabs">
+					   <li class="active">
+					   	<a data-toggle="tab" href="#Description">Description</a>
+					   </li>
+					   <li>
+					   	<a data-toggle="tab" href="#ShipPay">Shipping and Payment</a>
+					   </li>
+					   <li>
+					   	<a data-toggle="tab" href="#Guarantee">Guarantee</a>
+					   </li>
+					</ul>
+					<div class="tab-content">
+    					<div id="Description" class="tab-pane in active">
+    						<p>{{shDes}} {{loDes}}</p>
+				          	<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+				          	<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+    					</div>
+    					<div id="ShipPay" class="tab-pane">
+    						<p>{{shDes}}</p>
+							<p>{{loDes}}</p>
+							<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+				          	<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+    					</div>
+    					<div id="Guarantee" class="tab-pane">
+    						<p>{{shDes}}</p>
+							<p>{{loDes}}</p>
+							<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+				          	<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+    					</div>
+    				</div>
+					
+	      		</div>
+	      		<div>
+	      			<h3>Related Product</h3>
+	      			<hr/>
+	      			<div class="row" id="relatedItem"></div>
+	      		</div>
+	      		<div>
+	      			<h2>Reviews</h2>
+	      			<hr/>
+	      			<div class="row" id="custReview"></div>
+	      			<div style="text-align:center">
+						<nav>
+						  <ul class="pagination">
+						    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+    						<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+						    <li><a href="#">2</a></li>
+						    <li><a href="#">3</a></li>
+						    <li><a href="#">4</a></li>
+						    <li><a href="#">5</a></li>
+						    <li>
+						      <a href="#" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+						  </ul>
+						</nav>
+						</div>
+	      		</div>
+	      	</div>  	
+	</div>
+</div>

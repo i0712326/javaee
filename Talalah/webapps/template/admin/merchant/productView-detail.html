@@ -1,0 +1,79 @@
+<div>
+	<ol class="breadcrumb">
+	  <li><a href="#">Home</a></li>
+	  <li><a href="#Merchant">Merchant</a></li>
+	  <li><a href="#Merchant/View/{{merchant.mcId}}">{{merchant.mcId}}</a></li>
+	  <li class="active">{{id}}</li>
+	</ol>
+	<div class="row well">
+		<div class="page-header">
+  			<h3>Product Detail</h3>
+		</div>
+		<!-- product default image and product detail -->
+	    <div class="row">
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Product ({{id}})</h3>
+				  </div>
+				  <div class="panel-body">
+				  	<div class="thumbnail">
+				  		<img src="http://placehold.it/242x300" width="252" height="300" alt="{{name}}"/>
+				  	</div>
+				  	<div class="caption">
+					  	<h2 title="Product's Name">{{name}}</h2>
+				    	<h3 title="Price, Rate and review"> $ {{price}} USD
+							<span class="label label-primary"><span class="glyphicon glyphicon-star"></span> &nbsp; {{rate}} </span>
+							&nbsp;&nbsp;&nbsp;
+							<span class="label label-primary"><span class="glyphicon glyphicon-eye-open"></span> &nbsp; {{review}} </span>
+						</h3>
+						<div class="input-group space">
+						  <span class="input-group-addon">URL</span>
+						  <input type="text" class="form-control" placeholder="Username" value="{{url}}" >
+						  <span class="input-group-addon">
+						  	<a href="http://{{url}}" target="blank">
+						  		<span class="glyphicon glyphicon-new-window"></span>
+						  	</a>
+		  				  </span>
+						</div>
+					</div>
+				    <!-- product detail by type -->
+				  </div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Detail</h3>
+				  </div>
+				  <div class="panel-body">
+				  	<div id="prdDetail"></div>
+				  </div>
+				</div>
+				
+			</div>
+	  	</div>
+	  	<hr/>
+	  <!-- product related images -->
+		<div class="row">
+			<div id="productImgs"></div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="panel panel-default">
+		  <div class="panel-heading"><h3>Short Description</h3></div>
+		  <div class="panel-body">
+		    {{shDes}}
+		  </div>
+		</div>
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading"><h3>Full Description</h3></div>
+		  <div class="panel-body">
+		    {{loDes}}
+		  </div>
+		</div>
+		
+	</div>
+</div>

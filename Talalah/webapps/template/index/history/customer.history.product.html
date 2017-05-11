@@ -1,0 +1,498 @@
+<div>
+	<!-- Product Detail Main Page -->
+	<script type="text/template" id="historyProduct">
+		<div class="row space">
+			<ol class="breadcrumb">
+				<li><a href="#Home">Home</a></li>
+				<li><a href="#Home/Customer/{{order.customer.id}}">Customer</a></li>
+				<li><a href="#Home/Customer/{{order.customer.id}}/History">History</a></li>
+				<li class="active">{{product.name}}</li>
+			</ol>
+		</div>
+		
+		<div class="row space">
+			<div class="col-xs-4 col-sm-4 col-lg-4">
+				<img width="353" height="400" alt="{{name}}" id="img"/>
+				<div>
+					<h3 title="{{product.id}}">
+						<span class="glyphicon glyphicon-tag"></span>
+						{{product.name}}
+					</h3>
+					<h4 title="Price">
+						$ {{price}} USD,
+						<span class="glyphicon glyphicon-calendar"></span> {{order.date}} {{order.time}}
+					</h4>
+					<h4 title="product url"><a href="http://{{url}}"><span class="glyphicon glyphicon-link"></span>{{product.url}}</a></h4>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<!-- product detail panel (item or service) -->
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large"></span>Detail
+				  </div>
+				  <div class="panel-body">
+				    <div id="product-detail"></div>
+					<div class="col-sm-12 col-xs-12 col-lg-12" style="text-align:right;">
+						<button type="button" class="btn btn-primary btn-sm" id="eval" data-toggle="modal" data-target="#evaluateBox">Evaluate</button>
+				  	</div>
+				  </div>
+				  
+		    			<div class="modal" tabindex="-1" role="dialog" id="evaluateBox">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title">
+						        	<span class="glyphicon glyphicon-paperclip"></span> Evaluate
+						        </h4>
+						      </div>
+						      <div class="modal-body">
+						      		<div class="row space">
+										<div class="col-xs-12 col-sm-12 col-lg-12 space" style="text-align:center;">
+											<img width="80" height="80" id="merchantImg"/>
+											<div class="caption">
+      											<h3>{{product.merchant.name}}</h3>
+												<label class="radio-inline">
+													<input type="radio" name="mStar" value="5" checked>
+													<span class="glyphicon glyphicon-star"></span> 5
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="mStar" value="4">
+													<span class="glyphicon glyphicon-star"></span> 4
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="mStar" value="3">
+													<span class="glyphicon glyphicon-star"></span> 3
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="mStar" value="2">
+													<span class="glyphicon glyphicon-star"></span> 2
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="mStar" value="1">
+													<span class="glyphicon glyphicon-star"></span> 1
+												</label>
+											</div>	
+										</div>
+									</div>
+									<div class="row space">
+										<div class="col-xs-12 col-sm-12 col-lg-12" style="text-align:center;">
+											<img width="80" height="80" id="productImg"/>
+											<div class="caption">
+      											<h3>{{product.name}}</h3>
+												<label class="radio-inline">
+													<input type="radio" name="pStar" value="5" checked>
+													<span class="glyphicon glyphicon-star"></span> 5
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="pStar" value="4">
+													<span class="glyphicon glyphicon-star"></span> 4
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="pStar" value="3">
+													<span class="glyphicon glyphicon-star"></span> 3
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="pStar" value="2">
+													<span class="glyphicon glyphicon-star"></span> 2
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="pStar" value="1">
+													<span class="glyphicon glyphicon-star"></span> 1
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-lg-12">
+										<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+										<div class="col-xs-4 col-sm-4 col-lg-4">
+											<div class="alert alert-success" id="eval-aler-suc" style="display:none; text-align:center;">
+														SUCCESS!!!
+											</div>
+											<div class="alert alert-danger" id="eval-aler-err" style="display:none; text-align:center;">
+														ERROR !!!
+											</div>
+										</div>
+										<div class="col-xs-4 col-sm-4 col-lg-4"></div>
+									</div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						        <button type="button" class="btn btn-primary" id="postEval">OK</button>
+						      </div>
+						    </div><!-- /.modal-content -->
+						  </div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->				  
+
+
+				</div>
+			</div>
+			<div class="col-xs-2 col-sm-2 col-lg-2">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				  	<span class="glyphicon glyphicon-user"></span> Merchant
+				  </div>
+				  <div class="panel-body">
+				   	<h4 title="{{merchant.mcId}}">
+				   		<a href="#Home/Merchant/{{product.merchant.merchantCode.mcc}}/{{product.merchant.mcId}}">
+				   			{{product.merchant.name}}
+				   		</a>
+				   	</h4>
+				   	<h5>
+				   		<span class="glyphicon glyphicon-map-marker"></span>
+				   		{{product.merchant.address.district.name}}
+				   	</h5>
+				   	<h5>
+				   		<a href="#">
+				   			<span class="glyphicon glyphicon-link"></span>
+				   			{{product.merchant.url}}
+				   		</a>
+				   	</h5>
+				   	<h5>
+				   		<span class="glyphicon glyphicon-phone-alt"></span>
+				   		{{product.merchant.address.tel}}
+				   	</h5>
+				   	<h5>
+				   		<span class="glyphicon glyphicon-print"></span>
+				   		{{product.merchant.address.fax}}
+				   	</h5>
+				  </div>
+				</div>
+				
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">
+				    	<span class="glyphicon glyphicon-paperclip"></span>
+				    	Evaluation
+				    </h3>
+				  </div>
+				  <div class="panel-body" style="font-size:11px;">
+				    	<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 5 {{product.rate.percent5}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{product.rate.percent5}}" aria-valuemin="0" aria-valuemax="100" style="width: {{product.rate.percent5}}%;">
+						    		</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 4 {{product.rate.percent4}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{product.rate.percent4}}" aria-valuemin="0" aria-valuemax="100" style="width: {{product.rate.percent4}}%;">
+						  			</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 3 {{product.rate.percent3}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{product.rate.percent3}}" aria-valuemin="0" aria-valuemax="100" style="width: {{product.rate.percent3}}%;">
+						    		</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 2 {{product.rate.percent2}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{product.rate.percent2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{product.rate.percent2}}%;">
+						    		</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<span class="glyphicon glyphicon-star"></span> 1 {{product.rate.percent1}}%
+							</div>
+							<div class="col-xs-6 col-sm-6 col-lg-6">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{product.rate.percent1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{product.rate.percent1}}%;">
+						    		</div>
+								</div>
+							</div>
+						</div>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<div class="row space">
+			<h3>Related Photos:</h3>
+		</div>
+		<div class="row space">
+			<!-- related photos -->
+			<div id="related-imgs"></div>
+		</div>
+		<div class="row">
+			<div class="panel-group" id="accordion">
+			  <div class="panel panel-default">
+			    <div class="panel-heading">
+			      <h4 class="panel-title">
+			        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						<span class="glyphicon glyphicon-list"></span>&nbsp;Description
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse in">
+			      <div class="panel-body">
+			        {{product.shDes}}
+			      </div>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading">
+			      <h4 class="panel-title">
+			        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+			          <span class="glyphicon glyphicon-list-alt"></span>&nbsp;Full Details
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseTwo" class="panel-collapse collapse">
+			      <div class="panel-body">
+			        {{product.loDes}}
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div class="row space">
+			<h3>Related Products:</h3>
+		</div>
+		<div class="row space">
+			<!-- related products -->
+			<div id="related-products"></div>
+		</div>
+		<div class="row space">
+			<h3> Comments : </h3>
+		</div>
+		<div class="row space">
+			<div id="comments"></div>
+		</div>
+		<div class="row space" style="text-align:center;">
+			<div style="display:none;" id="loader">
+				<p>
+					<img src="/Talalah/content/util/img/loader.gif" id="loading"/>
+					Loading ... 
+				</p>
+			</div>
+			<span class="btn btn-default" id="loadmore">Load More</span>
+		</div>
+		
+	</script>
+	
+	<!-- travel detail -->
+
+	<script type="text/template" id="travel-detail">
+		<div class="row">
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="input-group space">
+		  			<span class="input-group-addon">Accommodation</span>
+		 			 <input type="text" class="form-control" placeholder="Username" value="{{product.accom}}" >
+				</div>
+			</div>
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+		   		<div class="input-group space">
+					<span class="input-group-addon">Transportation</span>
+				  	<input type="text" class="form-control" placeholder="Transportation" value="{{product.transport}}" >
+				</div>
+		   </div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Adult</span>
+				  <input type="text" class="form-control" placeholder="Username" value="{{adult}}" >
+				   <span class="input-group-addon">
+				   		<span class="glyphicon glyphicon-user"></span>
+				  	</span>
+				 </div>
+			</div>
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Child</span>
+				  <input type="text" class="form-control" placeholder="Username" value="{{child}}" >
+				   <span class="input-group-addon">
+				   		<span class="glyphicon glyphicon-user"></span>
+				  	</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Start</span>
+				  <input type="text" class="form-control" placeholder="Start Date" value="{{start}}" >
+				  <span class="input-group-addon">
+				   	<span class="glyphicon glyphicon-calendar"></span>
+				  </span>
+				 </div>
+			</div>
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="input-group space">
+				 	<span class="input-group-addon">End</span>
+		  			<input type="text" class="form-control" placeholder="End Date" value="{{end}}" >
+		  			<span class="input-group-addon">
+				   		<span class="glyphicon glyphicon-calendar"></span>
+				  	</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Days</span>
+				  <input type="text" class="form-control" placeholder="Days" value="{{days}}" >
+				</div>
+			</div>
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Guide</span>
+				  <input type="text" class="form-control" placeholder="Guide" value="{{product.guide}}" >
+				  <span class="input-group-addon">
+				   		<span class="glyphicon glyphicon-user"></span>
+				  	</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">PicUp</span>
+				  <input type="text" class="form-control" placeholder="Picup place" value="{{product.pickUp}}" >
+				  <span class="input-group-addon">
+				  	<a href="#" id="shppvdLink" data-toggle="modal" data-target="#myModal">
+				  		<span class="glyphicon glyphicon-map-marker"></span>
+				  	</a>
+				  </span>
+				</div>
+				<div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h4 class="panel-title">
+				         Trip Destination
+				      </h4>
+				    </div>
+				      <div class="panel-body">
+				        <div id="destinationList"></div>
+				      </div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-xs-6 col-lg-6">
+				  <div class="input-group space">
+				     <span class="input-group-addon">Food</span>
+				     <input type="text" class="form-control" placeholder="Foods" value="{{product.food}}" >
+					 <span class="input-group-addon"><span class="glyphicon glyphicon-cutlery"></span></span>
+				  </div>
+				  <div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h4 class="panel-title">
+				          Available Activities
+				      </h4>
+				    </div>
+				      <div class="panel-body">
+				        <div id="activitiesList"></div>
+				      </div>
+				  </div>
+			</div>
+		</div>
+	
+	</script>
+
+	<script type="text/template" id="item-detail">
+	<div>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Stock</span>
+				  <input type="text" class="form-control" placeholder="Username" value="{{product.stock}}" >
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Color</span>
+				  <input type="text" class="form-control" placeholder="Username" value="{{color}}" >
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Size</span>
+				  <input type="text" class="form-control" placeholder="Username" value="{{size}}" >
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Length</span>
+				  <input type="text" class="form-control" placeholder="Username" value="{{length}}" >
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Width</span>
+				  <input type="text" class="form-control" placeholder="Username" value="{{width}}" >
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-lg-6">
+				<div class="input-group space">
+				  <span class="input-group-addon">Height</span>
+				  <input type="text" class="form-control" placeholder="Username" value="{{heigth}}" >
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-lg-12">	
+			 <div class="panel panel-default">
+			    <div class="panel-heading">
+			      <h4 class="panel-title">
+			          Shipping Provider
+			      </h4>
+			    </div>
+			      <div class="panel-body">
+					<div class="row">
+						<div class="col-lg-12 col-xs-12 col-sm-12 space" style="border-bottom:1px solid #CCC;font-weight:bold;">
+							<div class="col-lg-2 col-xs-2 col-sm-2"> #</div>
+							<div class="col-lg-2 col-xs-2 col-sm-2"> ID </div>
+							<div class="col-lg-2 col-xs-2 col-sm-2"> Name </div>
+							<div class="col-lg-2 col-xs-2 col-sm-2"> Price</div>
+							<div class="col-lg-2 col-xs-2 col-sm-2"> Min</div>
+							<div class="col-lg-2 col-xs-2 col-sm-2"> Max</div>
+						</div>
+					</div>
+					<div class="row">
+			        	<div id="shppvdlist"></div>
+					<div>
+			      </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	</script>
+	
+	<!-- product shipping provider -->
+	
+	<script type="text/template" id="itemshippingprovider">
+		<div class="col-lg-2 col-xs-2 col-sm-2"> <input type="checkbox" name="spvdId" value="{{shipping.itemShippingProvider.shippingProvider.id}}" checked></div>
+		<div class="col-lg-2 col-xs-2 col-sm-2"> {{shipping.itemShippingProvider.shippingProvider.id}} </div>
+		<div class="col-lg-2 col-xs-2 col-sm-2"> {{shipping.itemShippingProvider.shippingProvider.name}} </div>
+		<div class="col-lg-2 col-xs-2 col-sm-2"> {{shipping.itemShippingProvider.price}}</div>
+		<div class="col-lg-2 col-xs-2 col-sm-2"> {{shipping.itemShippingProvider.min}}</div>
+		<div class="col-lg-2 col-xs-2 col-sm-2"> {{shipping.itemShippingProvider.max}}</div>
+	</script>
+	
+</div>
