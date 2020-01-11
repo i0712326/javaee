@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="enterprise-app-01">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="enterprise-web-01.war" deploy-path="/" handle="module:/resource/enterprise-web-01/enterprise-web-01">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="enterprise-ejb-01.jar" deploy-path="/" handle="module:/resource/enterprise-ejb-01/enterprise-ejb-01">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="enterprise-jpa-01.jar" deploy-path="/lib" handle="module:/resource/enterprise-jpa-01/enterprise-jpa-01">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
